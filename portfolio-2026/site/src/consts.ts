@@ -6,7 +6,7 @@ export const site = {
   email: 'mona.chatterjee25@gmail.com',
   linkedin: 'https://www.linkedin.com/in/monalishachatterjee/',
   behance: 'https://www.behance.net/monalishachatterjee',
-  url: 'https://monalisha-portfolio.vercel.app',
+  url: 'https://monalisha-portfolio-2026.vercel.app',
   title: 'Monalisha Chatterjee — Senior Product Designer, Bengaluru',
   description:
     'Senior product designer working on complex B2B products — fintech, loyalty and CRM. Research, systems and shipped work from Perx Technologies and Jabu (YC S21).',

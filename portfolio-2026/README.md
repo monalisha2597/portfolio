@@ -2,7 +2,7 @@
 
 Planning workspace for a new product design portfolio, built from scratch.
 
-> **Status:** Planning. Direction confirmed (Nov 2026). No code, no visual design, no content production yet.
+> **Status:** Built and live at **https://monalisha-portfolio-2026.vercel.app** on branch `portfolio-2026`, under `site/`. See [`site/README.md`](./site/README.md) for build and deploy notes.
 >
 > **Thesis:** Build a benchmark portfolio that proves Monalisha can take complex B2B problems from research to shipped systems — and make the site itself the proof.
 
