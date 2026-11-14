@@ -1,0 +1,13 @@
+# Local reference captures from Behance — not for publication or commit
+research/behance/
+research/**/*.png
+research/**/*.jpg
+research/**/*.webp
+
+# Build and environment
+node_modules/
+dist/
+.astro/
+.vercel/
+.env*
+.DS_Store
