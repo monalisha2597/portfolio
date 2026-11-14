@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://monalisha-portfolio.vercel.app/sitemap-index.xml

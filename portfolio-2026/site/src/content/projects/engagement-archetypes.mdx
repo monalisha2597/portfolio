@@ -1,0 +1,261 @@
+---
+title: 'One platform, four kinds of loyalty'
+shortTitle: 'Designing for Engagement'
+slug: 'engagement-archetypes'
+order: 1
+year: '2026'
+role: 'Sole product designer, Perx Technologies'
+scope: 'Platform IA · four archetypes · shared module library'
+platform: 'White-label loyalty app'
+status: 'Deployed across 8 B2B clients'
+subtitle: 'How a configurable archetype system let one loyalty platform fit telecom, banking, retail and travel — without building four products.'
+problem: 'One loyalty homepage was being asked to serve four industries with different reasons to return.'
+bet: 'Stop designing per client. Define four engagement archetypes, composed from one shared module library.'
+outcomeLine: '+42% engagement, +67% point utilisation and 3.2× reward redemption across eight clients in six months.'
+learned: 'Personalisation at platform scale is an information-architecture problem before it is a visual one.'
+cover: 'engagement'
+heroDiagram: 'archetypes'
+theme: 'paper'
+accent: 'cobalt'
+outcome:
+  - value: '+42%'
+    label: 'Daily active sessions per user'
+    note: 'Aggregate, eight clients, six months'
+  - value: '+67%'
+    label: 'Points redeemed within 30 days'
+    note: 'From a 38% baseline'
+  - value: '+31%'
+    label: 'Campaign participation'
+    note: 'Challenges, games and promos'
+  - value: '3.2×'
+    label: 'Monthly reward redemptions'
+    note: 'Per active user'
+meta:
+  - label: 'Role'
+    value: 'Sole product designer'
+  - label: 'Scope'
+    value: 'Research, IA, four archetypes, module system'
+  - label: 'Platform'
+    value: 'White-label mobile loyalty app'
+  - label: 'Status'
+    value: 'Live with 8 B2B clients'
+sections:
+  - id: 'context'
+    label: 'Context'
+  - id: 'research'
+    label: 'Research'
+  - id: 'bet'
+    label: 'The bet'
+  - id: 'decisions'
+    label: 'Decisions'
+  - id: 'design'
+    label: 'Design'
+  - id: 'system'
+    label: 'System'
+  - id: 'build'
+    label: 'Build'
+  - id: 'outcome'
+    label: 'Outcome'
+  - id: 'reflection'
+    label: 'Reflection'
+next: 'merchant-wallet'
+ogImage: '/og/engagement.png'
+description: 'Designing for Engagement: a four-archetype loyalty system that lifted point utilisation by 67% across eight B2B clients.'
+---
+
+import Section from '../../components/case/Section.astro';
+import DecisionLog from '../../components/case/DecisionLog.astro';
+import Diagram from '../../components/Diagram.astro';
+import Figure from '../../components/case/Figure.astro';
+import Callout from '../../components/case/Callout.astro';
+import Quote from '../../components/case/Quote.astro';
+import StatStrip from '../../components/case/StatStrip.astro';
+import ProjectPlate from '../../components/ProjectPlate.astro';
+
+<Section id="context" number="01" label="Context">
+## A homepage cannot be four products at once
+
+The platform runs loyalty programmes for brands across telecom, banking, retail and travel. Every client gets the same engine and the same page architecture: a balance, a grid of actions, a promotional banner, a reward catalogue.
+
+The engine was shared. The motivation was not.
+
+Telecom customers wanted to burn points before they expired. Banking customers responded to progress and milestones. Travel customers hunted for premium rewards. Retail customers acted on a time-bound offer. A single homepage had to choose one first action — and for at least three of those four groups, it chose wrong.
+
+The business felt it in the numbers: low engagement, underused points, and clients asking for exceptions. The obvious answer was a bespoke build per client. It was also the most expensive answer, and it would have turned one platform into a studio of one-off products.
+
+<Quote cite="Project brief">
+One platform, many industries. No single homepage fits all.
+</Quote>
+
+The constraint was not ambition. It was architecture: one codebase, many brands, and a sales promise of differentiation. The system had to flex without fragmenting.
+</Section>
+
+<Section id="research" number="02" label="Research">
+## The motivation changed by industry, not by demographic
+
+I started with three questions: what makes someone return, what makes them act, and what makes them leave. The work combined three evidence streams:
+
+- **Industry analysis** across six sectors, mapping the engagement model each one rewarded.
+- **500+ user sessions**, looking at the path from opening the app to the first meaningful action.
+- **25+ loyalty platforms** benchmarked globally, including the patterns every platform copies and the ones nobody defends.
+
+Three findings changed the design.
+
+**Motivation is industry-shaped.** The same demographic behaved differently inside a telecom programme and a banking programme. Segmenting by age or income would have produced a prettier homepage with the same wrong hierarchy.
+
+**The hero is the argument.** The first module tells the user what the product is for. A points balance says *spend*. A journey map says *keep going*. A premium reward says *aspire*. The old page used a points balance for everyone.
+
+**Clients wanted difference without a build.** Sales needed each brand to feel distinct. Engineering needed reuse. The system had to make differentiation a composition problem, not a code problem.
+
+The surprise was that the four patterns were not user segments. They were **engagement models**. The same person could move between them depending on the programme, the reward and the moment.
+
+<Figure number="01" caption="The industry matrix that framed the work. The question was not which industry a client was in, but which motivation its programme rewarded.">
+  <Diagram variant="matrix" />
+</Figure>
+</Section>
+
+<Section id="bet" number="03" label="The bet">
+## Four archetypes, one module library
+
+The bet was to stop designing pages and start designing a system of composition.
+
+If a homepage is assembled from four motivation-led archetypes — Point Utilization, Progress Driven, Reward Driven and Balanced Hybrid — and every archetype is built from the same module library, then:
+
+- clients get a homepage that fits their programme;
+- the team ships one improvement to every client at once;
+- the product stops accumulating bespoke exceptions.
+
+Success would be measured in four places: engagement, point utilisation, campaign participation and reward redemption. I also wanted a leading indicator the business cared about: how long it took to launch a new client.
+
+**In scope:** the four archetype definitions, the module inventory, composition rules, theming and state coverage.
+
+**Out of scope:** a real-time algorithmic personalisation engine, client-specific modules, and a new brand system per client.
+
+The risk was obvious. Four archetypes could quietly become four products, with four sets of exceptions and four maintenance bills. The system needed a boundary as clearly designed as the screens.
+</Section>
+
+<Section id="decisions" number="04" label="Decisions">
+## The forks that decided the system
+
+<DecisionLog items={[
+  {
+    decision: 'Four archetypes, one adaptive homepage, or bespoke builds?',
+    options: 'A single page that reorders itself; four named archetypes; a bespoke build per client.',
+    tradeoff: 'An adaptive page hides the model from clients and is hard to sell. Bespoke builds protect differentiation but destroy reuse. Archetypes are legible to sales and cheap to maintain, but risk feeling like a menu.',
+    choice: 'Four named archetypes, selectable and combinable per client.',
+    why: 'Clients could see themselves in a named model, and the team could reuse the same components. Naming made the strategy discussable in a sales meeting, not just a design review.'
+  },
+  {
+    decision: 'One shared module library, or archetype-specific components?',
+    options: 'A shared library with composition rules; a separate component set per archetype.',
+    tradeoff: 'Separate sets would let each archetype feel truly distinct, but four libraries mean four maintenance paths. A shared library keeps the system coherent, but requires stronger rules to stop every homepage looking the same.',
+    choice: 'One shared library, with archetype-level order and emphasis.',
+    why: 'The difference between the homepages had to be hierarchy, not new parts. If a client needed a genuinely new capability, it became a candidate module for every client — not a private exception.'
+  },
+  {
+    decision: 'One universal hero, or a different hero per archetype?',
+    options: 'Keep the balance hero for consistency; let each archetype lead with its own strongest signal.',
+    tradeoff: 'A universal hero is simpler to build and easier to learn. A variable hero makes the first action correct but complicates theming and QA.',
+    choice: 'A different hero hierarchy per archetype.',
+    why: 'The first module is where the engagement model becomes legible. Point Utilization leads with balance. Progress leads with the journey. Reward leads with the catalogue. Hybrid deliberately gives points and progress equal weight.'
+  },
+  {
+    decision: 'How far can a client customise before the system stops being a system?',
+    options: 'Unlimited module and layout changes; theme tokens only; theme tokens plus composition.',
+    tradeoff: 'Unlimited freedom is a bespoke build in disguise. Tokens-only protects the system but undersells differentiation. Composition is the middle: brands can arrange the argument, not rewrite it.',
+    choice: 'Theme tokens plus composition. No client-specific modules without a platform-level case.',
+    why: 'This was the governance decision that protected the outcome. It gave clients a distinct surface without creating a second product to maintain.'
+  }
+]} />
+</Section>
+
+<Section id="design" number="05" label="Design">
+## Four surfaces, one grammar
+
+Each archetype is a different answer to the same question: what should this person do next?
+
+**Point Utilization** makes the balance the hero. Quick actions sit directly under it, followed by cashback and streak modules. Games and challenges are not decoration; they are a way to make points feel useful before expiry.
+
+**Progress Driven** makes the journey the hero. Levels, milestones and an ongoing loyalty record turn a balance into a trajectory. Reward suggestions are placed against the stage the person is in, not the size of their balance.
+
+**Reward Driven** leads with aspiration. A promotional banner opens the catalogue, recent redemption history builds confidence, and a curated monthly selection reduces the work of choosing. VIP tiers create a reason to keep looking.
+
+**Balanced Hybrid** is for platforms with mixed motivations. Points and badges share the top of the page, and *Continue Journey* sits beside *Make the Most*. It is the hardest archetype to compose because it has to resist choosing a favourite.
+
+The composition rules were as important as the modules:
+
+- One primary signal per homepage, expressed by the hero.
+- No more than two competing calls to action above the fold.
+- Every module must have an empty, loading and error state.
+- A module earns its place by changing a decision, not by filling a gap.
+- The same module can appear in any archetype, but never with the same emphasis.
+
+The edge cases were where the system proved itself: a new user with no points, an expired reward with no replacement, a client with an empty catalogue, and a hybrid user with two equally valid next actions. Each one needed a designed first screen, not a fallback that apologised for the product.
+
+<Figure number="02" caption="The four archetype surfaces. The composition changes; the module library underneath does not.">
+  <ProjectPlate variant="engagement" />
+</Figure>
+</Section>
+
+<Section id="system" number="06" label="System">
+## The library is the product
+
+The visible output was four homepages. The actual deliverable was a module library and the rules for composing it.
+
+The library covered the balance card, quick actions, journey map, level card, reward card, catalogue grid, redemption history, streak, challenge, cashback, VIP tier and the empty states between them. Each module had a defined content model, a hierarchy, a theming contract and a state set.
+
+That contract is what made the system survive contact with client brands. A client could change colour, type and imagery. It could change the order of modules and the emphasis of the hero. It could not invent a new module for a campaign and expect the platform to carry it forever.
+
+<Figure number="03" caption="The shared layer: colour, type and components are defined once. Client theming changes the surface, not the structure.">
+  <Diagram variant="library" />
+</Figure>
+
+The governance rule was blunt: **if a change cannot ship to every client, it is not a platform change.** Exceptions were allowed for a launch, but they had to enter the library or leave the roadmap. That rule did more for consistency than any component documentation.
+</Section>
+
+<Section id="build" number="07" label="Build">
+## Designing for the build, not the presentation
+
+The hardest part was not the visual system. It was making the system legible to engineering and to client success at the same time.
+
+Every archetype was handed over as a composition spec: module order, hero behaviour, theming boundaries, responsive rules and state coverage. The build team could see which parts were shared and which parts were allowed to change. Client success could see which promises were safe to make.
+
+The compromises were real. We cut animation-heavy gamification that would have been expensive to QA across brands. We kept the games as modules, but simplified their reward moments. We also stopped short of a real-time adaptive homepage; the archetypes gave us most of the value with a fraction of the operational risk.
+
+The QA checklist became a shared artefact: brand tokens, contrast, empty states, currency and number formatting, reward expiry, and the first screen for a user with no history. It was the difference between a design that looked right in Figma and one that held up in eight client environments.
+</Section>
+
+<Section id="outcome" number="08" label="Outcome">
+## What changed
+
+The system shipped across **eight B2B clients in six months**. The four archetypes now serve **12+ industries**.
+
+<StatStrip items={[
+  { value: '+42%', label: 'Daily active sessions per user' },
+  { value: '+67%', label: 'Points redeemed within 30 days' },
+  { value: '+31%', label: 'Campaign participation' },
+  { value: '3.2×', label: 'Monthly reward redemptions' }
+]} />
+
+The point-utilisation result moved from a **38% baseline** to a 67% lift, measured as points redeemed within 30 days of earning. Engagement is average daily active sessions per user across the archetype variants. Campaign participation covers challenges, games and promotional modules.
+
+<Callout label="How to read this">
+These are aggregate figures across eight clients over six months, not a controlled experiment. Individual client results varied, and the release overlapped with campaign calendar changes. Read them as directional evidence that the archetype model worked — not as a promise that any single programme will see the same lift.
+</Callout>
+
+The commercial result mattered as much as the engagement numbers. A new client could launch from an existing archetype instead of commissioning a new homepage. The design team shipped improvements once, and every client received them.
+
+That is the part I would defend in a review: the system made differentiation cheaper than duplication.
+</Section>
+
+<Section id="reflection" number="09" label="Reflection">
+## What I would do differently
+
+I would test archetype fit earlier, with five users per industry, before the modules were built. We validated the model through the research and the client rollout, but a small round of task-based tests would have caught the hybrid composition problem sooner.
+
+I would also define the governance rule in the first workshop, not after the first exception. The system only became real when we could say no to a bespoke module without losing the client relationship.
+
+What I would keep is the shared library. The four archetypes are memorable, but the library is the asset. It is the reason the next client is faster than the last one — and the reason the work still looks like one product.
+
+**The lesson:** at platform scale, personalisation is an information-architecture problem before it is a visual one. The moment you solve it with a new screen, you have created a maintenance cost. The moment you solve it with a system, you have created leverage.
+</Section>

@@ -1,0 +1,51 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../consts';
+---
+
+<footer class="footer" id="contact">
+  <div class="wrap">
+    <p class="footer__kicker mono"><span class="dot"></span>{site.availability} · Bengaluru, IST</p>
+
+    <h2 class="footer__title">Let&rsquo;s make something useful.</h2>
+
+    <a class="footer__email" href={`mailto:${site.email}`}>
+      {site.email}
+      <Icon name="arrow-up-right" size={32} stroke={1.2} />
+    </a>
+
+    <div class="footer__grid">
+      <div class="footer__col">
+        <h3>Elsewhere</h3>
+        <p><a href={site.linkedin} target="_blank" rel="noopener">LinkedIn <span class="sr-only">(opens in a new tab)</span></a></p>
+        <p><a href={site.behance} target="_blank" rel="noopener">Behance archive <span class="sr-only">(opens in a new tab)</span></a></p>
+      </div>
+      <div class="footer__col">
+        <h3>For hiring</h3>
+        <p><a href="/resume">Résumé</a></p>
+        <p><a href="/about">About Monalisha</a></p>
+      </div>
+      <div class="footer__col">
+        <h3>Reading</h3>
+        <p><a href="/work/engagement-archetypes">Designing for Engagement</a></p>
+        <p><a href="/systems">Systems</a></p>
+      </div>
+      <div class="footer__col">
+        <h3>Local time</h3>
+        <p class="local-time" data-local-time>—</p>
+        <p>Bengaluru, India</p>
+      </div>
+    </div>
+
+    <div class="footer__base">
+      <div>
+        <span>© 2026 Monalisha Chatterjee</span>
+        <span>Built with Astro, React Three Fiber &amp; care</span>
+      </div>
+      <div>
+        <button class="motion-toggle" type="button" data-motion-toggle aria-pressed="false">Reduce motion</button>
+        <a href="#top">Back to top ↑</a>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,91 @@
+---
+interface Props {
+  variant: 'engagement' | 'wallet' | 'dashboard';
+  class?: string;
+}
+
+const { variant, class: className = '' } = Astro.props;
+---
+
+<div class:list={['plate', `plate--${variant}`, className]} aria-hidden="true">
+  {variant === 'engagement' && (
+    <div class="plate__grid4">
+      <div class="plate__mini" style="--tone: var(--cobalt);">
+        <span class="p-kicker">Point utilisation</span>
+        <span class="p-num">2,480 pts</span>
+        <span class="p-bar p-bar--w"></span>
+        <span class="p-bar p-bar--s"></span>
+        <div class="p-row"><span class="p-dot"></span><span class="p-dot"></span><span class="p-dot"></span></div>
+      </div>
+      <div class="plate__mini" style="--tone: var(--ink);">
+        <span class="p-kicker">Progress driven</span>
+        <span class="p-num">Level 4</span>
+        <span class="p-bar p-bar--w"></span>
+        <span class="p-bar p-bar--s"></span>
+        <div class="p-row"><span class="p-dot"></span><span class="p-dot"></span><span class="p-dot"></span></div>
+      </div>
+      <div class="plate__mini plate__mini--dark" style="--tone: var(--acid);">
+        <span class="p-kicker">Reward driven</span>
+        <span class="p-num">Bali, 2 seats</span>
+        <span class="p-bar p-bar--w"></span>
+        <span class="p-bar p-bar--s"></span>
+        <div class="p-row"><span class="p-dot"></span><span class="p-dot"></span><span class="p-dot"></span></div>
+      </div>
+      <div class="plate__mini" style="--tone: var(--ember);">
+        <span class="p-kicker">Balanced hybrid</span>
+        <span class="p-num">1,240 pts</span>
+        <span class="p-bar p-bar--w"></span>
+        <span class="p-bar p-bar--s"></span>
+        <div class="p-row"><span class="p-dot"></span><span class="p-dot"></span><span class="p-dot"></span></div>
+      </div>
+    </div>
+    <span class="plate__tag">4 archetypes · 1 system</span>
+  )}
+
+  {variant === 'wallet' && (
+    <>
+      <div class="wallet-phone">
+        <span class="w-kicker">JWallet balance</span>
+        <span class="w-balance">K 1,840.00</span>
+        <div class="w-actions"><span></span><span></span><span></span><span></span></div>
+        <div class="w-list">
+          <span style="--w: 84%"></span>
+          <span style="--w: 62%"></span>
+          <span style="--w: 72%"></span>
+        </div>
+      </div>
+      <div class="wallet-card">
+        <span class="w-kicker">72-day savings</span>
+        <strong>3.5%</strong>
+        <small>Monthly interest · no bank needed</small>
+      </div>
+      <span class="plate__tag">Merchant · agent · admin</span>
+    </>
+  )}
+
+  {variant === 'dashboard' && (
+    <>
+      <div class="dash-window">
+        <div class="dash-top"><span></span><span></span><span></span></div>
+        <div class="dash-body">
+          <div class="dash-side">
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <div class="dash-main">
+            <div class="dash-queue">
+              <span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="dash-call">
+              <span class="dc-head"></span>
+              <span class="dc-line"></span>
+              <span class="dc-line dc-line--short"></span>
+              <span class="dc-line"></span>
+              <span class="dc-chip"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <span class="plate__tag">Queue-first CRM</span>
+    </>
+  )}
+</div>

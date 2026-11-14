@@ -1,0 +1,249 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import StaticStack from '../components/StaticStack.astro';
+import HeroIsland from '../components/three/HeroIsland.tsx';
+import ProjectPlate from '../components/ProjectPlate.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import Icon from '../components/Icon.astro';
+import { principles, proof, site } from '../consts';
+
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<Base title={site.title} description={site.description}>
+  <section class="hero" data-hero>
+    <div class="hero__sticky">
+      <div class="wrap hero__grid">
+        <div class="hero__copy">
+          <p class="eyebrow reveal">
+            <span class="dot"></span>
+            Senior product designer · Bengaluru, India
+          </p>
+
+          <h1 class="hero__title reveal" style="--d: 60ms;">
+            Design that <em>holds up</em> when you look closer.
+          </h1>
+
+          <p class="hero__lede reveal" style="--d: 140ms;">
+            I&rsquo;m Monalisha. I design complex B2B products — fintech, loyalty and CRM —
+            and the systems underneath them.
+          </p>
+
+          <div class="hero__actions reveal" style="--d: 220ms;">
+            <a class="btn" href="#work">See the work <Icon name="arrow-down" size={14} /></a>
+            <a class="head-link" href="/Profile.pdf" download>Download résumé (PDF)</a>
+          </div>
+
+          <ul class="hero__proof reveal" style="--d: 300ms;">
+            {proof.map((item) => (
+              <li>
+                <span class="mono">{item.label}</span>
+                <strong>{item.value}</strong>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="hero__stage">
+          <div class="hero__visual" data-hero-stage>
+            <div class="hero__poster">
+              <StaticStack />
+            </div>
+            <div class="hero__canvas">
+              <HeroIsland client:idle />
+            </div>
+          </div>
+
+          <div class="hero__caption mono">
+            <span><strong>The interface is the surface.</strong> The work is underneath.</span>
+            <span>Four layers, one product surface</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__foot wrap mono">
+        <span class="scroll-cue"><span class="scroll-cue__line"></span> Scroll to separate the layers</span>
+        <span>Portfolio 2026 · Selected work 2023—2026</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="work">
+    <div class="wrap">
+      <SectionHeader
+        number="01"
+        label="Selected work"
+        title="Three problems. Three systems."
+        aside="2023—2026"
+      />
+
+      <ol class="work-list">
+        {projects.map((project, index) => (
+          <li>
+            <a class="work-row reveal" href={`/work/${project.data.slug}`} style={`--d: ${index * 80}ms;`}>
+              <span class="work-row__index mono">{String(index + 1).padStart(2, '0')}</span>
+
+              <div class="work-row__main">
+                <h3 class="work-row__title">{project.data.shortTitle}</h3>
+                <p class="work-row__meta mono">
+                  <span>{project.data.year}</span>
+                  <span>{project.data.role}</span>
+                  <span>{project.data.platform}</span>
+                </p>
+              </div>
+
+              <div class="work-row__body">
+                <p class="work-row__problem">{project.data.problem}</p>
+                <p class="work-row__outcome">
+                  {project.data.outcome.slice(0, 2).map((metric, metricIndex) => (
+                    <span>
+                      {metricIndex > 0 ? ' · ' : ''}
+                      <span class="mark">{metric.value}</span> {metric.label.toLowerCase()}
+                    </span>
+                  ))}
+                </p>
+                <span class="work-row__cta">
+                  Read the case study
+                  <Icon name="arrow-up-right" size={13} />
+                </span>
+              </div>
+
+              <div class="work-row__media">
+                <ProjectPlate variant={project.data.cover} />
+              </div>
+            </a>
+          </li>
+        ))}
+      </ol>
+
+      <div class="work-foot">
+        <p class="mono muted">Two deep case studies and one medium. Every number has a source and a caveat.</p>
+        <a class="link-arrow mono" href={site.behance} target="_blank" rel="noopener">
+          Older archive on Behance <Icon name="arrow-up-right" size={13} />
+          <span class="sr-only">(opens in a new tab)</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ink" id="approach">
+    <div class="wrap">
+      <SectionHeader
+        number="02"
+        label="Approach"
+        title="The screen is the surface. The work is underneath."
+        aside="How I work"
+        theme="ink"
+      />
+
+      <div class="principles">
+        {principles.map((principle, index) => (
+          <article class="principle reveal" style={`--d: ${index * 70}ms;`}>
+            <span class="principle__num mono">{principle.number}</span>
+            <h3>{principle.title}</h3>
+            <p>{principle.body}</p>
+            <span class="principle__artifact mono">{principle.artifact}</span>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="systems">
+    <div class="wrap">
+      <div class="split">
+        <div class="split__text reveal">
+          <p class="eyebrow"><span>03</span><span>Systems</span></p>
+          <h2>The system behind the screens.</h2>
+          <p>
+            A design library, a FlutterFlow component set, an AI-assisted workflow and a
+            design QA habit. The part that makes the next screen faster — and the tenth
+            screen consistent.
+          </p>
+          <a class="link-arrow" href="/systems">See the systems <Icon name="arrow-up-right" size={14} /></a>
+        </div>
+
+        <div class="split__media reveal" style="--d: 100ms;">
+          <div class="board">
+            <div class="board__head mono">
+              <span>Design library</span>
+              <span>v1.0</span>
+            </div>
+            <div class="board__rows">
+              <div class="board__row">
+                <span class="board__label mono">Colour</span>
+                <div class="board__swatches">
+                  <span style="background: var(--ink);"></span>
+                  <span style="background: var(--cobalt);"></span>
+                  <span style="background: var(--acid);"></span>
+                  <span style="background: var(--paper-deep);"></span>
+                </div>
+                <span class="mono muted">4 tokens</span>
+              </div>
+              <div class="board__row">
+                <span class="board__label mono">Type</span>
+                <span class="board__type">Display / Text / Mono</span>
+                <span class="mono muted">3 roles</span>
+              </div>
+              <div class="board__row">
+                <span class="board__label mono">Components</span>
+                <div class="board__chips">
+                  <span class="is-solid">Button</span>
+                  <span>Status</span>
+                  <span>Card</span>
+                  <span class="is-acid">Call result</span>
+                </div>
+                <span class="mono muted">Shared</span>
+              </div>
+              <div class="board__row">
+                <span class="board__label mono">Rules</span>
+                <div class="board__chips">
+                  <span>One accent per view</span>
+                  <span>States before polish</span>
+                </div>
+                <span class="mono muted">Documented</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--paper-deep" id="about">
+    <div class="wrap">
+      <div class="about-teaser">
+        <div class="about-teaser__media reveal">
+          <figure class="portrait">
+            <img
+              src="/img/portrait-1200.webp"
+              srcset="/img/portrait-800.webp 800w, /img/portrait-1200.webp 1200w"
+              sizes="(max-width: 720px) 90vw, 40vw"
+              width="1200"
+              height="1500"
+              alt="Portrait of Monalisha Chatterjee"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+          <p class="portrait__caption mono">
+            <span>Monalisha Chatterjee</span>
+            <span>Bengaluru, India</span>
+          </p>
+        </div>
+
+        <div class="about-teaser__text reveal" style="--d: 100ms;">
+          <p class="eyebrow"><span>04</span><span>About</span></p>
+          <h2>Finance first. Then design.</h2>
+          <p>
+            I started in finance, moved into product design, and have spent the last four
+            years on products where trust and operational complexity matter more than visual
+            novelty. Small teams gave me range. Platform work gave me scale.
+          </p>
+          <a class="link-arrow" href="/about">More about Monalisha <Icon name="arrow-up-right" size={14} /></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

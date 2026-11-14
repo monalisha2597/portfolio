@@ -1,0 +1,19 @@
+---
+interface Props {
+  number: string;
+  caption: string;
+  class?: string;
+}
+
+const { number, caption, class: className = '' } = Astro.props;
+---
+
+<figure class:list={['figure', className]}>
+  <div class="figure__media">
+    <slot />
+  </div>
+  <figcaption>
+    <span class="figure__num mono">Fig. {number}</span>
+    <span>{caption}</span>
+  </figcaption>
+</figure>

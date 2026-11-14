@@ -1,0 +1,195 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { experience, principles, site, skills } from '../consts';
+
+const title = 'About — Monalisha Chatterjee';
+const description =
+  'Monalisha Chatterjee is a senior product designer in Bengaluru, working across fintech, loyalty and CRM. Finance background, systems thinking, research to ship.';
+---
+
+<Base title={title} description={description} image="/og/about.png" bodyClass="page-about">
+  <header class="wrap">
+    <div class="about-hero">
+      <div class="about-hero__media reveal">
+        <figure class="portrait">
+          <img
+            src="/img/portrait-1200.webp"
+            srcset="/img/portrait-800.webp 800w, /img/portrait-1200.webp 1200w"
+            sizes="(max-width: 720px) 90vw, 40vw"
+            width="1200"
+            height="1500"
+            alt="Portrait of Monalisha Chatterjee"
+            decoding="async"
+          />
+        </figure>
+        <p class="portrait__caption mono">
+          <span>Monalisha Chatterjee</span>
+          <span>Bengaluru, India</span>
+        </p>
+      </div>
+
+      <div class="about-hero__copy reveal" style="--d: 80ms;">
+        <p class="eyebrow"><span class="dot"></span>About · Bengaluru, India</p>
+        <h1>Finance first. Then design.</h1>
+        <p>
+          I&rsquo;m a senior product designer working on complex B2B products — fintech, loyalty
+          and CRM. I started in banking, moved into product design, and have spent the last four
+          years on products where trust and operational complexity matter more than visual
+          novelty.
+        </p>
+        <p>
+          I like problems that do not fit on one screen: money that has to move safely, a
+          platform that has to serve different industries, an operations tool that has to make a
+          queue feel manageable.
+        </p>
+        <div class="hero__actions" style="margin-top: 28px;">
+          <a class="btn" href="/Profile.pdf" download>Download résumé <Icon name="arrow-down" size={14} /></a>
+          <a class="head-link" href={`mailto:${site.email}`}>Email me</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="about-story">
+        <div class="about-story__rail">
+          <p class="eyebrow"><span>01</span><span>The story</span></p>
+        </div>
+        <div class="about-story__body">
+          <h2 class="display-m">The business lens came first.</h2>
+          <p>
+            I studied finance and spent my first working years as a personal banker. It was
+            stable, and it was not for me. I kept finding the problem-solving more interesting
+            than the paperwork: why a product was hard to use, why a process created a
+            complaint, why a number on a screen changed someone&rsquo;s behaviour.
+          </p>
+          <p>
+            I moved into design deliberately, not as an escape. The finance background turned
+            out to be useful. It gave me a working model of interest, float, reconciliation,
+            risk and the difference between a metric that looks good and a business that works.
+          </p>
+          <p>
+            Small teams gave me range. At Jabu I designed a CRM, a wallet and the system that
+            connected them. At Perx I became the sole designer on a B2B loyalty platform,
+            working across customer microsites, the programme dashboard, engagement games and a
+            FlutterFlow library. Complex products gave me judgment. Platform work gave me scale.
+          </p>
+          <p>
+            The through-line is simple: I am interested in the layer underneath the screen. The
+            research that changes the brief, the structure that makes the flow legible, the
+            system that lets the next screen ship faster.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--paper-deep">
+    <div class="wrap">
+      <p class="eyebrow" style="margin-bottom: 28px;"><span>02</span><span>Experience</span></p>
+      <div class="timeline">
+        {experience.map((item) => (
+          <div class="timeline__row">
+            <span class="timeline__period mono">{item.period}</span>
+            <div class="timeline__role">
+              <h3>{item.role}</h3>
+              <span class="mono">{item.org}</span>
+              <div class="timeline__tags">
+                {item.tags.map((tag) => <span>{tag}</span>)}
+              </div>
+            </div>
+            <p class="timeline__note">{item.note}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow" style="margin-bottom: 28px;"><span>03</span><span>Principles</span></p>
+      <div class="principles-grid">
+        {principles.map((principle) => (
+          <article class="principle">
+            <span class="principle__num mono">{principle.number}</span>
+            <h3>{principle.title}</h3>
+            <p>{principle.body}</p>
+            <span class="principle__artifact mono">{principle.artifact}</span>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="wrap">
+      <div class="split">
+        <div class="split__text">
+          <p class="eyebrow"><span>04</span><span>Looking for</span></p>
+          <h2>A senior role on a product that matters.</h2>
+          <p>
+            I am looking for a senior product design role on a complex B2B product, with
+            ownership from problem framing to shipped system. Fintech, platform, developer tools
+            or operational software all fit.
+          </p>
+          <p>
+            I work well in small teams with strong product and engineering partners, and I am
+            comfortable being the first designer in the room or the one who leaves the system
+            behind.
+          </p>
+          <a class="link-arrow" href={`mailto:${site.email}`}>Start a conversation <Icon name="arrow-up-right" size={14} /></a>
+        </div>
+
+        <div class="split__media">
+          <div class="board">
+            <div class="board__head mono">
+              <span>Availability</span>
+              <span>2026</span>
+            </div>
+            <div class="board__rows">
+              <div class="board__row">
+                <span class="board__label mono">Role</span>
+                <span class="board__type">Senior product designer</span>
+                <span class="mono muted">Full-time</span>
+              </div>
+              <div class="board__row">
+                <span class="board__label mono">Location</span>
+                <span class="board__type">Bengaluru · IST</span>
+                <span class="mono muted">Remote-ready</span>
+              </div>
+              <div class="board__row">
+                <span class="board__label mono">Start</span>
+                <span class="board__type">Available for the right role</span>
+                <span class="mono muted">Flexible</span>
+              </div>
+              <div class="board__row">
+                <span class="board__label mono">Tools</span>
+                <div class="board__chips">
+                  <span>Figma</span>
+                  <span>FigJam</span>
+                  <span>FlutterFlow</span>
+                  <span>Maze</span>
+                  <span>Notion</span>
+                  <span>Jira</span>
+                  <span>AI tools</span>
+                </div>
+                <span class="mono muted">Daily</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="wrap">
+      <p class="eyebrow" style="margin-bottom: 20px;"><span>05</span><span>Skills</span></p>
+      <div class="skill-list">
+        {skills.map((skill) => <span>{skill}</span>)}
+      </div>
+    </div>
+  </section>
+</Base>

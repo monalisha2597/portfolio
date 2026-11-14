@@ -1,0 +1,61 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import ProjectPlate from '../../components/ProjectPlate.astro';
+import Icon from '../../components/Icon.astro';
+
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+const title = 'Work — Monalisha Chatterjee';
+const description = 'Selected product design case studies: loyalty platforms, fintech and CRM.';
+---
+
+<Base title={title} description={description} image="/og/default.png" bodyClass="page-work-index">
+  <header class="page-hero">
+    <div class="wrap">
+      <p class="eyebrow"><span>Selected work</span><span>·</span><span>2023—2026</span></p>
+      <h1 class="page-hero__title">Three problems. Three systems.</h1>
+      <p class="page-hero__lede">
+        Platform strategy, financial inclusion and operational tooling. Each case study follows
+        the problem, the bet, the decisions and the evidence — including what is missing.
+      </p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="wrap">
+      <ol class="work-list">
+        {projects.map((project, index) => (
+          <li>
+            <a class="work-row reveal" href={`/work/${project.data.slug}`} style={`--d: ${index * 80}ms;`}>
+              <span class="work-row__index mono">{String(index + 1).padStart(2, '0')}</span>
+              <div class="work-row__main">
+                <h2 class="work-row__title">{project.data.shortTitle}</h2>
+                <p class="work-row__meta mono">
+                  <span>{project.data.year}</span>
+                  <span>{project.data.role}</span>
+                  <span>{project.data.platform}</span>
+                </p>
+              </div>
+              <div class="work-row__body">
+                <p class="work-row__problem">{project.data.problem}</p>
+                <p class="work-row__outcome">
+                  {project.data.outcome.slice(0, 2).map((metric, metricIndex) => (
+                    <span>{metricIndex > 0 ? ' · ' : ''}<span class="mark">{metric.value}</span> {metric.label.toLowerCase()}</span>
+                  ))}
+                </p>
+                <span class="work-row__cta">Read the case study <Icon name="arrow-up-right" size={13} /></span>
+              </div>
+              <div class="work-row__media">
+                <ProjectPlate variant={project.data.cover} />
+              </div>
+            </a>
+          </li>
+        ))}
+      </ol>
+      <div class="work-foot">
+        <a class="link-arrow mono" href="/">Back to home <Icon name="arrow-left" size={13} /></a>
+        <a class="link-arrow mono" href="/#contact">Contact <Icon name="arrow-up-right" size={13} /></a>
+      </div>
+    </div>
+  </section>
+</Base>

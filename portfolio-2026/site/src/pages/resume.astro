@@ -1,0 +1,147 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { experience, site, skills } from '../consts';
+
+const title = 'Résumé — Monalisha Chatterjee';
+const description = 'Résumé for Monalisha Chatterjee, senior product designer in Bengaluru.';
+
+const courses = [
+  'Foundations of User Experience (UX) Design',
+  'Start the UX Design Process: Empathize, Define, and Ideate',
+  'Build Wireframes and Low-Fidelity Prototypes',
+  'Conduct UX Research and Test Early Concepts',
+];
+---
+
+<Base title={title} description={description} image="/og/default.png" bodyClass="page-resume">
+  <header class="page-hero">
+    <div class="wrap">
+      <p class="eyebrow"><span class="dot"></span><span>Résumé · 2026</span></p>
+      <h1 class="page-hero__title">Monalisha Chatterjee</h1>
+      <p class="page-hero__lede">
+        Senior product designer in Bengaluru. Four years across fintech, loyalty and CRM,
+        with a finance background and a bias toward shipped systems.
+      </p>
+      <div class="hero__actions">
+        <a class="btn" href="/Profile.pdf" download>Download PDF <Icon name="arrow-down" size={14} /></a>
+        <a class="head-link" href={`mailto:${site.email}`}>{site.email}</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="resume">
+      <div class="resume__main">
+        <section class="resume__block">
+          <h2>Experience</h2>
+          {experience.map((item) => (
+            <div class="resume__row">
+              <span class="resume__period mono">{item.period}</span>
+              <div>
+                <h3>{item.role} <span>· {item.org}</span></h3>
+                <p>{item.note}</p>
+              </div>
+            </div>
+          ))}
+        </section>
+
+        <section class="resume__block">
+          <h2>Selected work</h2>
+          <div class="resume__row">
+            <span class="resume__period mono">2026</span>
+            <div>
+              <h3>Designing for Engagement <span>· Perx Technologies</span></h3>
+              <p>
+                A configurable loyalty-homepage system built from four engagement archetypes and
+                one shared module library. Deployed across eight B2B clients; +42% engagement and
+                +67% point utilisation aggregated over six months.
+              </p>
+            </div>
+          </div>
+          <div class="resume__row">
+            <span class="resume__period mono">2024</span>
+            <div>
+              <h3>Merchant wallet <span>· Jabu (YC S21)</span></h3>
+              <p>
+                End-to-end research, flows and MVP prototype for a cash-first wallet, plus the
+                agent and admin surfaces that make it operable. Six money paths, four funding
+                rails and a shared state model.
+              </p>
+            </div>
+          </div>
+          <div class="resume__row">
+            <span class="resume__period mono">2023</span>
+            <div>
+              <h3>Agent CRM dashboard <span>· Jabu (YC S21)</span></h3>
+              <p>
+                Research-led redesign of the agent dashboard. Reorganised the board into Stats,
+                Call-related and General info; 75% independent task completion in a five-agent
+                usability test. The shipped board fed the shared design library.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="resume__block">
+          <h2>Skills</h2>
+          <div class="skill-list">
+            {skills.map((skill) => <span>{skill}</span>)}
+          </div>
+        </section>
+
+        <section class="resume__block">
+          <h2>Professional development</h2>
+          {courses.map((course) => (
+            <div class="resume__row">
+              <span class="resume__period mono">2021</span>
+              <div>
+                <h3 style="font-size: 1.05rem;">{course}</h3>
+                <p>Coursera · UX design foundations</p>
+              </div>
+            </div>
+          ))}
+        </section>
+      </div>
+
+      <aside class="resume__side">
+        <div class="board">
+          <div class="board__head mono">
+            <span>Contact</span>
+            <span>IST</span>
+          </div>
+          <div class="board__rows">
+            <div class="board__row" style="grid-template-columns: 1fr;">
+              <div>
+                <span class="board__label mono">Email</span>
+                <p style="margin-top: 4px;"><a href={`mailto:${site.email}`} style="border-bottom: 1px solid var(--line-strong);">{site.email}</a></p>
+              </div>
+            </div>
+            <div class="board__row" style="grid-template-columns: 1fr;">
+              <div>
+                <span class="board__label mono">LinkedIn</span>
+                <p style="margin-top: 4px;"><a href={site.linkedin} target="_blank" rel="noopener" style="border-bottom: 1px solid var(--line-strong);">/in/monalishachatterjee</a></p>
+              </div>
+            </div>
+            <div class="board__row" style="grid-template-columns: 1fr;">
+              <div>
+                <span class="board__label mono">Based in</span>
+                <p style="margin-top: 4px;">Bengaluru, India</p>
+              </div>
+            </div>
+            <div class="board__row" style="grid-template-columns: 1fr;">
+              <div>
+                <span class="board__label mono">Availability</span>
+                <p style="margin-top: 4px;">Open to senior product roles</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a class="btn" href="/Profile.pdf" download>Download résumé <Icon name="arrow-down" size={14} /></a>
+        <p class="mono muted" style="margin-top: 14px; font-size: 0.6rem; line-height: 1.5;">
+          PDF, one page. The web version is the fuller record.
+        </p>
+      </aside>
+    </div>
+  </div>
+</Base>

@@ -1,0 +1,20 @@
+---
+interface Props {
+  number: string;
+  label: string;
+  title: string;
+  aside?: string;
+  theme?: 'paper' | 'ink';
+}
+
+const { number, label, title, aside, theme = 'paper' } = Astro.props;
+---
+
+<header class:list={['section-head', theme === 'ink' && 'section-head--ink']}>
+  <div class="section-head__label">
+    <span class="mono">{number}</span>
+    <span class="mono">{label}</span>
+  </div>
+  <h2 class="section-head__title display-m">{title}</h2>
+  {aside && <p class="section-head__aside mono">{aside}</p>}
+</header>

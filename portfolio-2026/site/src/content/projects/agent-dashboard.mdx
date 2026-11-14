@@ -1,0 +1,247 @@
+---
+title: 'A queue, not a feature list'
+shortTitle: "Re-designing the agent's dashboard"
+slug: 'agent-dashboard'
+order: 3
+year: '2023'
+role: 'Product Designer I, Jabu (YC S21)'
+scope: 'Research · information architecture · UI · design library'
+platform: 'Desktop web · Jabu CRM'
+status: 'Shipped as Jabu CRM'
+subtitle: 'Rebuilding an agent dashboard around the call, not the record — and cutting the information that made the day harder.'
+problem: 'The dashboard showed everything at once, so agents scrolled instead of working.'
+bet: 'Reorganise the board around the call — Stats, Call-related and General info — and hide the outcome until a call is live.'
+outcomeLine: '75% completed the assigned task independently in a five-agent test; the redesigned board shipped.'
+learned: 'In operational tools, hierarchy is the feature.'
+cover: 'dashboard'
+heroDiagram: 'ia'
+theme: 'paper'
+accent: 'cobalt'
+outcome:
+  - value: '75%'
+    label: 'Completed the task independently'
+    note: 'Five-agent usability test'
+  - value: '6'
+    label: 'Research findings translated'
+    note: 'Hotjar plus agent interviews'
+  - value: '3'
+    label: 'Information zones'
+    note: 'Stats · Call-related · General'
+  - value: '5'
+    label: 'Agents tested'
+    note: 'Namibia and Zambia, remote'
+meta:
+  - label: 'Role'
+    value: 'Product designer, research to UI'
+  - label: 'Scope'
+    value: 'Hotjar analysis, IA, UI, design library'
+  - label: 'Platform'
+    value: 'Desktop web, Jabu CRM'
+  - label: 'Status'
+    value: 'Shipped'
+sections:
+  - id: 'context'
+    label: 'Context'
+  - id: 'research'
+    label: 'Research'
+  - id: 'bet'
+    label: 'The bet'
+  - id: 'decisions'
+    label: 'Decisions'
+  - id: 'design'
+    label: 'Design'
+  - id: 'system'
+    label: 'System'
+  - id: 'build'
+    label: 'Build'
+  - id: 'outcome'
+    label: 'Outcome'
+  - id: 'reflection'
+    label: 'Reflection'
+next: 'engagement-archetypes'
+ogImage: '/og/dashboard.png'
+description: 'A queue, not a feature list: rebuilding the Jabu agent CRM around the call, with 75% independent task completion in testing.'
+---
+
+import Section from '../../components/case/Section.astro';
+import DecisionLog from '../../components/case/DecisionLog.astro';
+import Diagram from '../../components/Diagram.astro';
+import Figure from '../../components/case/Figure.astro';
+import Callout from '../../components/case/Callout.astro';
+import Quote from '../../components/case/Quote.astro';
+import StatStrip from '../../components/case/StatStrip.astro';
+import ProjectPlate from '../../components/ProjectPlate.astro';
+
+<Section id="context" number="01" label="Context">
+## The day is a queue. The dashboard was a filing cabinet.
+
+Jabu’s agents spend their day on calls: a customer orders, a callback is due, a follow-up is overdue, a basket needs a nudge. The dashboard is the surface between the agent and that queue. If it hides the next call, the agent pays for it on every conversation.
+
+The old board tried to be comprehensive. Customer information was fixed at the top left and took up space that belonged to the work. Orders, GMV, basket size, SKUs, last order, last interaction and promotional offers were all present at once. The result was a long scroll and a hunt for the section that mattered.
+
+The cost was not aesthetic. It was operational: more time per call, missed context, and performance data that lived somewhere else when the agent needed it. Agents were also working without a filter for customer group or type, which made a large book of business feel larger than it was.
+
+The brief was a redesign. The real task was to decide what the board was for.
+</Section>
+
+<Section id="research" number="02" label="Research">
+## Watching the work before changing the screen
+
+I combined behavioural data with conversation. Hotjar showed what agents actually used and what they ignored. The agent conversations explained why.
+
+Six findings came out of the research:
+
+- Agents needed a **filtering function** for specific groups or types of customer.
+- Too much initial information caused a **long scroll** and made sections hard to locate.
+- Agents wanted a **separate performance view**, not a panel squeezed into the board.
+- A **call-result logic tree** would improve the data captured for retention.
+- The **fixed customer-information frame** consumed space that the call needed.
+- Agents wanted **customer offers in the dashboard**, rather than switching to the mobile app.
+
+Then we tested the direction with **five agents in Namibia and Zambia**, remote, 15–20 minutes each. The prototype was in Figma, sessions were recorded, and notes lived in Notion.
+
+**75% completed the assigned task independently.** The positives were specific: the board was easier to navigate, the call log was convenient, and one participant described “a wealth of information” reachable in one or two clicks.
+
+The problems were equally specific. Most users struggled to find the daily-target drawer. Some did not understand the campaign wording. And agents wanted a way to mark a customer as removed, non-existent or duplicate so the person stopped appearing in the call list.
+
+<Quote cite="Usability test finding">
+The board made the information easier to reach. It did not yet make the next action obvious enough.
+</Quote>
+</Section>
+
+<Section id="bet" number="03" label="The bet">
+## Rebuild the information architecture before the interface
+
+The hypothesis was simple: if the board is organised around the call, agents will spend less time locating information and more time in the conversation.
+
+That meant three moves:
+
+1. **Categorise the information** into Stats, Call-related and General info.
+2. **Give the call a stable frame** with the customer context, the call result and the next action in one place.
+3. **Move performance out of the board** into its own view, so the working surface stays focused.
+
+Success would be measured through task completion, time on task and the number of misroutes or missed follow-ups. In the first round, we could measure completion and comprehension. The live metrics would come after release.
+
+**In scope:** information architecture, dashboard UI, call states, filtering, customer tags, the performance view and the component library.
+
+**Out of scope:** a full CRM rebuild, a mobile agent app, and a reporting suite. The dashboard had to ship inside the existing product.
+</Section>
+
+<Section id="decisions" number="04" label="Decisions">
+## The choices that made the board quieter
+
+<DecisionLog items={[
+  {
+    decision: 'Queue-first or record-first?',
+    options: 'Open on the customer record; open on the next call; open on a performance summary.',
+    tradeoff: 'Record-first supports research and account management, but it makes the agent search before every conversation. Queue-first is faster for the core job but offers less context at a glance. Performance-first answers a manager’s question, not an agent’s.',
+    choice: 'Queue-first, with the customer record attached to the active call.',
+    why: 'The agent’s job is the next conversation. The board should open with the work, not with a database.'
+  },
+  {
+    decision: 'Keep the fixed customer-information frame, or make it collapsible?',
+    options: 'Keep the always-visible frame; collapse it behind a drawer; move context into the call panel.',
+    tradeoff: 'Always-visible context reduces clicks but permanently taxes the board. A drawer protects space but adds a step. Moving context into the call panel keeps it close to the task, at the cost of a less global view.',
+    choice: 'Context lives with the call; the global customer list remains filterable and scannable.',
+    why: 'Agents did not need every data point at every moment. They needed the right data for the call in front of them.'
+  },
+  {
+    decision: 'One dense board, or tabs plus a dedicated performance view?',
+    options: 'One board with everything; a board plus tabs; a board with a separate performance workspace.',
+    tradeoff: 'One board is easy to learn and impossible to focus. Tabs reduce density but hide the next action. A separate performance view gives each job a home, but adds navigation.',
+    choice: 'A focused board with tabs, plus My Performance as its own view.',
+    why: 'Performance is a reflective task. It does not belong in the middle of a call queue.'
+  },
+  {
+    decision: 'How should filtering and call results work?',
+    options: 'No filter; a free-text search; filters by customer group, type and state plus a structured call-result tree.',
+    tradeoff: 'Free text is flexible but produces inconsistent data and poor recall. Structured filters take longer to design, but they make the queue legible and the outcome measurable.',
+    choice: 'Structured filters and a call-result logic tree.',
+    why: 'Filtering is how an agent controls the day. The logic tree is how the business learns from it. Both had to be designed as product structure, not as settings.'
+  }
+]} />
+</Section>
+
+<Section id="design" number="05" label="Design">
+## From an inventory to three zones
+
+The design work started with an inventory, not a layout. We listed every data point on the old board, then asked two questions of each: does the agent need this to make the call, and does it need to be visible before the call starts?
+
+That produced the three-zone structure: **Stats** for the commercial picture, **Call-related** for the interaction and its outcome, and **General info** for the customer’s history and recommendations. The old-to-new comparison became the argument for the redesign.
+
+<Figure number="01" caption="The information architecture: from a dense board, through an audit of every data point, to three zones with a clear job.">
+  <Diagram variant="ia" />
+</Figure>
+
+The final board is deliberately non-scrollable in its working state. Each zone has a fixed role, and the visual hierarchy does the navigation. The call-outcome section stays hidden until a call is active, which reduces the cognitive load before the conversation and makes the result step explicit once it begins.
+
+Customer tags — New, Retention, Lost, Recover, Current — turn purchase behaviour into a scanning aid. Colour blocking separates the zones without turning the board into a dashboard of competing widgets. The daily-target drawer gives the agent a reason to look up without pulling them out of the queue.
+
+The states were part of the design, not an afterthought: an empty queue, an incoming call, a callback that is due, a follow-up with no answer, and a customer who should be removed from the list.
+
+<Figure number="02" caption="The shipped board: a queue on the left, a call surface on the right, and performance moved out of the working view.">
+  <ProjectPlate variant="dashboard" />
+</Figure>
+</Section>
+
+<Section id="system" number="06" label="System">
+## A small library with a long life
+
+The dashboard needed a library because the product was growing faster than its visual language. I defined colour tokens, a type scale and a component set that could survive the next few screens.
+
+The library covered:
+
+- **Colour:** Lucky blue, Jabu purple, neutrals, success, error and progress.
+- **Type:** a compact scale for dense operational data.
+- **Components:** buttons, checkboxes, dropdowns, text fields, tags and status patterns.
+- **Rules:** density limits, alignment, where colour is allowed to carry meaning, and how a state is announced.
+
+The point was not consistency for its own sake. In an operational tool, a repeated pattern is a learned pattern. If a status chip looks different on every screen, the agent has to re-read it. If it looks the same, they can scan it.
+
+<Figure number="03" caption="The library in use: tokens, type roles and the components that recur across the CRM.">
+  <Diagram variant="library" />
+</Figure>
+</Section>
+
+<Section id="build" number="07" label="Build">
+## Shipping the quieter board
+
+I worked with product and engineering through the build, reviewing the board against the IA rather than against the mockup. The most useful questions were structural: does the call panel still hold when the customer has no order history? Does the empty queue explain what to do next? Does a filter that returns nothing offer a way back?
+
+Design QA focused on the moments the research had surfaced: the daily-target drawer, the campaign copy, and the path for marking a customer as removed or duplicate. Not all of those were solved in the first release, but naming them made them part of the roadmap instead of a surprise.
+
+The board shipped. The library outlived it.
+</Section>
+
+<Section id="outcome" number="08" label="Outcome">
+## What the test showed
+
+<StatStrip items={[
+  { value: '75%', label: 'Independent task completion' },
+  { value: '5', label: 'Agents tested' },
+  { value: '3', label: 'Information zones' },
+  { value: '1', label: 'Shipped board' }
+]} />
+
+Five agents completed the assigned task, with 75% doing so independently. That is a task-completion signal from a small sample, not a speed claim and not a live product metric.
+
+The qualitative result mattered too. Agents could describe where things were. The call log was seen as convenient. The board felt like a place to work rather than a record to search.
+
+<Callout label="The caveat" tone="cobalt">
+This was a five-agent usability test across two markets, not a controlled study. It tells us the structure was learnable. It does not tell us the board reduced handle time in production. The next measurement should be time on task and follow-up completion after release.
+</Callout>
+
+The redesign also contributed the component patterns that became part of Jabu’s shared design library. The work did not end at the dashboard; it changed the vocabulary for the next operational screen.
+</Section>
+
+<Section id="reflection" number="09" label="Reflection">
+## What I would do differently
+
+I would test the daily-target drawer as its own task, not as a detail inside a larger one. It was the most consistent stumble in the sessions, and we learned about it later than we needed to.
+
+I would also instrument the live board earlier. The usability test told us the structure was understandable; it could not tell us whether the queue actually moved faster. A small set of events — time to first call, call-result completion, follow-up created — would have turned a good redesign into a measurable one.
+
+What I would keep is the discipline of the inventory. Listing every data point and asking what job it does is unglamorous, but it is the difference between a tidier screen and a better operating tool.
+
+**The lesson:** in operational tools, hierarchy is the feature. The agent does not need fewer capabilities; they need the next action to be obvious.
+</Section>

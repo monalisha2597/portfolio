@@ -1,0 +1,21 @@
+---
+interface Item {
+  value: string;
+  label: string;
+}
+
+interface Props {
+  items: Item[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="outcome-block">
+  {items.map((item) => (
+    <div class="outcome-block__item">
+      <p class="outcome-block__value">{item.value}</p>
+      <p class="outcome-block__label mono">{item.label}</p>
+    </div>
+  ))}
+</div>

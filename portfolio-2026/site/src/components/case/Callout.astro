@@ -1,0 +1,13 @@
+---
+interface Props {
+  label?: string;
+  tone?: 'acid' | 'cobalt' | 'ember';
+}
+
+const { label = 'Caveat', tone = 'acid' } = Astro.props;
+---
+
+<aside class:list={['callout', tone !== 'acid' && `callout--${tone}`]}>
+  <p class="mono">{label}</p>
+  <div class="callout__body"><slot /></div>
+</aside>

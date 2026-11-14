@@ -1,0 +1,267 @@
+---
+title: 'Designing trust for cash-first merchants'
+shortTitle: 'Merchant wallet: designing for trust'
+slug: 'merchant-wallet'
+order: 2
+year: '2024'
+role: 'Product Designer II, Jabu (YC S21)'
+scope: 'Research programme · money flows · MVP prototype · design QA'
+platform: 'Merchant app · agent app · admin web'
+status: 'MVP defined and handed to build'
+subtitle: 'A wallet for people whose money has always been physical — where trust is earned in the first thirty seconds and tested at every failed transfer.'
+problem: 'Merchants ran their businesses on cash, and the brief asked for a wallet. The real problem was trust.'
+bet: 'Build a wallet that earns interest without a bank, and digitise Jabu’s collection through agents instead of around them.'
+outcomeLine: 'Three role-specific surfaces, six money paths and a full state model — the MVP reference the team could build against.'
+learned: 'Trust is a flow property, not a marketing claim.'
+cover: 'wallet'
+heroDiagram: 'rails'
+theme: 'ink'
+accent: 'acid'
+outcome:
+  - value: '3'
+    label: 'Role-specific surfaces'
+    note: 'Merchant, agent, admin'
+  - value: '6'
+    label: 'Money paths designed'
+    note: 'Send, request, cash in, cash out, savings, bills'
+  - value: '4'
+    label: 'Funding rails'
+    note: 'Cash, bank, card, mobile money'
+  - value: '1'
+    label: 'Shared state model'
+    note: 'Pending, failed, reversed, settled'
+meta:
+  - label: 'Role'
+    value: 'Product designer, end to end'
+  - label: 'Scope'
+    value: 'Ambassador research, flows, prototype, QA'
+  - label: 'Platform'
+    value: 'Mobile apps and admin web'
+  - label: 'Status'
+    value: 'MVP defined and handed to build'
+sections:
+  - id: 'context'
+    label: 'Context'
+  - id: 'research'
+    label: 'Research'
+  - id: 'bet'
+    label: 'The bet'
+  - id: 'decisions'
+    label: 'Decisions'
+  - id: 'design'
+    label: 'Design'
+  - id: 'system'
+    label: 'System'
+  - id: 'build'
+    label: 'Build'
+  - id: 'outcome'
+    label: 'Outcome'
+  - id: 'reflection'
+    label: 'Reflection'
+next: 'agent-dashboard'
+ogImage: '/og/wallet.png'
+description: 'Designing trust for cash-first merchants: research, money rails and a merchant wallet MVP for Jabu (YC S21).'
+---
+
+import Section from '../../components/case/Section.astro';
+import DecisionLog from '../../components/case/DecisionLog.astro';
+import Diagram from '../../components/Diagram.astro';
+import Figure from '../../components/case/Figure.astro';
+import Callout from '../../components/case/Callout.astro';
+import Quote from '../../components/case/Quote.astro';
+import StatStrip from '../../components/case/StatStrip.astro';
+import ProjectPlate from '../../components/ProjectPlate.astro';
+
+<Section id="context" number="01" label="Context">
+## The brief was a wallet. The problem was trust.
+
+Jabu distributes goods to small shops and collects payment at the last mile. In the markets it serves, cash is not a legacy behaviour; it is the operating system. Shop owners keep cash on the premises, pay suppliers in cash, and save through informal methods that offer safety without paperwork.
+
+That creates two problems at once.
+
+For the merchant, cash is exposed. Theft, fraud and an unreliable memory of what was earned make it hard to build a buffer. For Jabu, collection is slow and manual: daily counting, delayed reconciliation, and a basket size limited by how much cash a shop can safely hold.
+
+The brief asked for a wallet. The research pointed at something narrower and harder: **a way to hold, move and grow money that feels as safe as cash, without asking people to become bank customers first.**
+
+The product had three users, not one:
+
+- **Merchants** order stock, hold a balance, save, pay bills and refer other shops.
+- **Agents** help merchants join, fund wallets and digitise cash at the counter.
+- **Admins** manage KYC, roles, approvals, fees and the health of the network.
+
+Designing only the merchant app would have produced a beautiful front door with no operating model behind it.
+</Section>
+
+<Section id="research" number="02" label="Research">
+## Research with the people the product had to convince
+
+We ran a four-stage **Jabu Ambassador Program** with existing customers, rather than recruiting strangers for a usability lab.
+
+1. **Kickoff** — align the research goals, the ambassador role and the feedback rules.
+2. **Persona interviews** — understand the business, the household and the pressures around both.
+3. **User interviews** — technology comfort, financial history, fears and workarounds.
+4. **Task-based testing** — put MVP prototypes in front of merchants and watch what happened, including what they would not say out loud.
+
+Three insights shaped the product.
+
+**Cash was the only rail people fully trusted.** The issue was not a lack of awareness of banking. It was a rational preference for the thing that could be counted, hidden and handed over. A wallet had to preserve that sense of control, not lecture people out of it.
+
+**A failed transfer feels like losing cash.** In a card product, a failed payment is an inconvenience. In a cash-first context, it is evidence that the screen cannot be trusted with the money. Pending, failed and reversed states were not edge cases. They were the product.
+
+**Agents were the trust proxy.** Merchants did not adopt the app in isolation. They adopted the agent who explained it, funded it and could be found when something went wrong. A self-serve-only model would have removed the human proof the product needed.
+
+The surprise was how little the interest rate mattered in the first conversation. Safety came first; the rate became interesting only after the money was already there.
+
+<Quote cite="Research synthesis">
+The question was never “why don’t you have a bank account?” It was “what would make this screen feel as safe as the cash in your pocket?”
+</Quote>
+</Section>
+
+<Section id="bet" number="03" label="The bet">
+## Make the wallet behave like cash, then add what cash cannot do
+
+The bet was to design a wallet that respects the cash mental model and earns the right to replace part of it.
+
+That meant three things:
+
+- **Cash in and cash out are first-class paths**, not onboarding friction to be minimised.
+- **Agents are part of the product**, with their own app and their own view of the merchant relationship.
+- **Savings are inside the wallet**, so a merchant can put money aside and see the return without opening a second product or visiting a branch.
+
+Success would be measured in activation and confidence: first top-up completion, time to first successful transfer, support contacts per hundred transfers, and the share of merchants who kept a balance after the first month. I also wanted an operational measure: how much cash Jabu still had to count manually.
+
+**In scope:** onboarding, wallet, send, request, cash in, cash out, savings, bill payments, the agent app, the admin/KYC surface, and the failure states across all of them.
+
+**Out of scope:** credit underwriting, a full bank account, and a merchant lending product. Those were real opportunities, but they would have made the first release impossible to explain.
+</Section>
+
+<Section id="decisions" number="04" label="Decisions">
+## Four decisions that made the wallet a system
+
+<DecisionLog items={[
+  {
+    decision: 'Cash-first mental model, or a conventional fintech wallet?',
+    options: 'Copy the familiar card-and-balance pattern; build around cash-in, cash-out and agent-assisted money.',
+    tradeoff: 'The conventional pattern is faster to design and easier to demo, but it assumes a bank account and a level of trust the user may not have. A cash-first model is slower to explain but matches the life it enters.',
+    choice: 'Cash-first, with cash in and cash out treated as primary actions.',
+    why: 'The research was unambiguous: people needed to see money enter and leave in ways they recognised. Hiding the cash rail would have made the product feel like a bank account in disguise.'
+  },
+  {
+    decision: 'Agent-assisted rails, or self-serve only?',
+    options: 'A merchant-only app; a merchant app plus an agent app; a fully assisted service.',
+    tradeoff: 'Self-serve scales without headcount but removes the trust proxy. Fully assisted does not scale. The two-sided model costs more to design and operate, but it is how the product actually reaches people.',
+    choice: 'Both. Agents for trust and cash digitisation; self-serve for everyday use.',
+    why: 'Agents were already the relationship. Designing their surface was not a back-office detail; it was the adoption strategy.'
+  },
+  {
+    decision: 'Savings inside the wallet, or a separate product?',
+    options: 'A separate savings app; a savings tab inside the wallet; no savings in the first release.',
+    tradeoff: 'A separate product is cleaner to scope but adds a second habit and a second login. Inside the wallet is fewer steps, but it risks making the home screen harder to read. Removing it would have stripped out the strongest reason to keep money in the app.',
+    choice: 'Savings inside the wallet, with a dedicated tab and a simple deposit flow.',
+    why: 'The merchant needed to see the return next to the balance, not in another app. The design constraint was to keep the savings surface legible in one screen: deposit, estimated return, success, total saved, recent activity.'
+  },
+  {
+    decision: 'How should pending, failed and reversed money be represented?',
+    options: 'A single generic error; a detailed state for each failure; a state model shared across every rail.',
+    tradeoff: 'A generic error is cheap and destroys confidence. Detailed failures are honest but can overwhelm. A shared state model is more work up front, but it makes every rail behave consistently.',
+    choice: 'One shared state model across cash, bank, card and mobile money.',
+    why: 'Trust is built at the moment money does not move. The state model made failure legible, gave support a common language, and stopped each rail from inventing its own version of “something went wrong”.'
+  }
+]} />
+</Section>
+
+<Section id="design" number="05" label="Design">
+## Mapping the money before drawing the screens
+
+The centrepiece of the project was a full money-flow map: send, request, cash in, cash out, savings and bill payments, across four rails — cash with an agent, bank account, bank card and mobile money.
+
+The map included the parts portfolios usually skip: OTP and PIN recovery, limits, fees, reversals, failed transfers, pending states and the branch where a merchant has no funds at all. It was the first artefact the team used to argue about scope, because it made the cost of a shortcut visible.
+
+<Figure number="01" caption="The money rails and status model. The wallet is not one flow; it is a set of paths that must behave consistently when they fail.">
+  <Diagram variant="rails" />
+</Figure>
+
+The merchant app followed the same order every time: balance, act, confirm, see what happened. The savings tab kept the interest tiers simple — 32, 48 and 72 days — so the choice was about time, not financial literacy. The transfer flow showed the fee and the destination before the confirmation, then stayed on screen until the state resolved.
+
+Onboarding had to work for a first-time user and a returning one: new user, OTP, PIN; existing user; forgotten PIN. Each branch had a designed recovery path, because a lockout is a trust event.
+
+The agent app was built around the counter, not the dashboard. An agent needed to find a merchant, fund a wallet, explain a state and move on. The admin surface held the other side: KYC documents, roles and permissions, savings-product approvals, fees and referral rules.
+
+<Figure number="02" caption="The merchant wallet surface. The balance is persistent, the actions are explicit, and savings are visible without leaving the app.">
+  <ProjectPlate variant="wallet" />
+</Figure>
+
+The failure states got the same design attention as the happy path.
+
+<Figure number="03" caption="Four money states, one language. Each state names what happened, what the balance is doing, and what the person can do next.">
+  <Diagram variant="states" />
+</Figure>
+</Section>
+
+<Section id="system" number="06" label="System">
+## One state language across three products
+
+The system contribution was not a component gallery. It was a shared way to represent money movement.
+
+Every transaction surface used the same anatomy: amount, direction, rail, fee, status and next action. Every failure used the same hierarchy: what happened, what it means for the balance, what to do now. Every confirmation used the same timing language.
+
+That consistency mattered most in the admin product, where a support agent might be looking at the same transaction as the merchant and the field agent. If the three surfaces described the state differently, the organisation would create its own distrust.
+
+The reusable patterns were:
+
+- A transaction row with direction, rail and status.
+- A status panel for pending, failed, reversed and settled money.
+- A limit and fee disclosure block.
+- An OTP and PIN recovery pattern.
+- A savings-product card with term, rate and estimated return.
+
+These became the base for later Jabu money products, which is the strongest signal that the system was real rather than a one-project artefact.
+</Section>
+
+<Section id="build" number="07" label="Build">
+## Handoff was a trust exercise too
+
+The build needed more than screens. It needed a shared definition of what the product would do when the network dropped, the agent was offline, the OTP expired, or the bank rail returned a state nobody had seen before.
+
+I worked with product and engineering on the flow map, then stayed through implementation to review the money states in build. The design QA checklist focused on the moments that erode confidence: the amount before and after a fee, the difference between pending and failed, the copy on a reversal, and the path back to a working balance.
+
+Not everything shipped at once. The MVP was defined and prototyped; the team sequenced the rails and the savings product behind it. The honest outcome is the artefact: a complete map, three role-specific surfaces, and a prototype that gave the team something concrete to build against.
+</Section>
+
+<Section id="outcome" number="08" label="Outcome">
+## The evidence this project actually reached
+
+There is no public post-launch metric for this work. I am not going to invent one.
+
+What the project produced:
+
+<StatStrip items={[
+  { value: '3', label: 'Role-specific surfaces' },
+  { value: '6', label: 'Money paths designed' },
+  { value: '4', label: 'Funding rails' },
+  { value: '1', label: 'Shared state model' }
+]} />
+
+- A four-stage research programme with existing Jabu customers.
+- A complete money-flow map across merchant, agent and admin surfaces.
+- A tested MVP prototype covering onboarding, wallet, savings, transfers and failure states.
+- A reusable state language that carried into later products.
+
+<Callout label="The honest caveat" tone="cobalt">
+No post-launch adoption or support metric is shareable, so this case study stops at the evidence rung it actually reached: a defined, prototyped product with a build-ready flow map. The next measurement I would add is first top-up completion and support contacts per hundred transfers.
+</Callout>
+
+The work also changed how I design money products. I no longer treat the error state as the end of the flow. In a cash-first context, the error state is the moment the product either earns trust or loses it.
+</Section>
+
+<Section id="reflection" number="09" label="Reflection">
+## What I would do differently
+
+I would test the savings metaphor earlier. Merchants understood “save” immediately; the interest tiers took longer. We got there, but a small comprehension test on the savings card would have shortened the iteration.
+
+I would also bring the agent app into the same design sprint as the merchant app from day one. We designed them as one system eventually, but the first week treated the agent surface as a downstream artefact. It is not. In a trust-led product, the agent is part of the interface.
+
+What I would keep is the insistence on mapping the money before the screens. The flow map was the most useful design artefact in the project, and the one the team kept using after the visuals were done.
+
+**The lesson:** trust is a flow property. It is built in the first thirty seconds, tested at every failed transfer, and maintained by whether the product tells the truth about what just happened.
+</Section>

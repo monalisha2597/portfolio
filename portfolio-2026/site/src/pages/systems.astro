@@ -1,0 +1,245 @@
+---
+import Base from '../layouts/Base.astro';
+import Diagram from '../components/Diagram.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../consts';
+
+const title = 'Systems — Monalisha Chatterjee';
+const description =
+  'The design library, FlutterFlow component set, AI-assisted workflow and design QA behind the work.';
+---
+
+<Base title={title} description={description} image="/og/systems.png" bodyClass="page-systems">
+  <header class="page-hero">
+    <div class="wrap">
+      <p class="eyebrow"><span>Systems</span><span>·</span><span>The layer underneath</span></p>
+      <h1 class="page-hero__title">The system behind the screens.</h1>
+      <p class="page-hero__lede">
+        A design library, a FlutterFlow component set, an AI-assisted workflow and a design QA
+        habit. The work that makes the next screen faster and the tenth screen consistent.
+      </p>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <section class="sys-block" id="library">
+      <div class="sys-block__rail">
+        <span class="cs-section__num">01</span>
+        <span class="cs-section__label mono">Design library</span>
+      </div>
+      <div class="sys-block__body">
+        <h2>One library, three surfaces.</h2>
+        <p>
+          The CRM, the wallet and the loyalty platform were different products with the same
+          underlying problem: too many screens, too little shared language. The library gave
+          them a common vocabulary for colour, type, states and components.
+        </p>
+        <p>
+          It was not a Figma gallery. The library carried rules: one accent per view, states
+          before polish, a fixed density scale for operational data, and a status language that
+          meant the same thing on every surface. A component was only finished when its empty,
+          loading, error and edge states were designed.
+        </p>
+
+        <div class="sys-visual">
+          <Diagram
+            variant="library"
+            caption="The library in miniature: tokens, type roles and the components that recur across the work."
+          />
+        </div>
+
+        <h3>What it changed</h3>
+        <ul>
+          <li>New screens started from a working pattern, not a blank artboard.</li>
+          <li>Status and money states stayed consistent across merchant, agent and admin surfaces.</li>
+          <li>Design review moved from taste to rules: hierarchy, contrast, density and state coverage.</li>
+          <li>Engineering received a component contract instead of a picture of a component.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="sys-block" id="flutterflow">
+      <div class="sys-block__rail">
+        <span class="cs-section__num">02</span>
+        <span class="cs-section__label mono">FlutterFlow</span>
+      </div>
+      <div class="sys-block__body">
+        <h2>From Figma to a working app library.</h2>
+        <p>
+          Client apps were shipping slowly because every new programme started from a blank
+          FlutterFlow project. The design library existed, but it stopped at the edge of the
+          build. I translated the core components into a FlutterFlow set so a new client app
+          could begin with a working system rather than a rebuild.
+        </p>
+        <p>
+          The translation forced better design decisions. A component that cannot be built
+          cleanly is usually a component with an unclear contract. Mapping the library to real
+          widgets exposed which parts were genuinely reusable and which were decoration.
+        </p>
+
+        <div class="sys-visual">
+          <div class="board">
+            <div class="board__head mono">
+              <span>Figma → FlutterFlow</span>
+              <span>Working library</span>
+            </div>
+            <div class="board__rows">
+              <div class="board__row">
+                <span class="board__label mono">Tokens</span>
+                <span class="board__type">Colour, type and spacing mapped to theme values</span>
+                <span class="mono muted">Shared</span>
+              </div>
+              <div class="board__row">
+                <span class="board__label mono">Components</span>
+                <span class="board__type">Buttons, cards, chips, status rows, empty states</span>
+                <span class="mono muted">Reusable</span>
+              </div>
+              <div class="board__row">
+                <span class="board__label mono">Patterns</span>
+                <span class="board__type">Onboarding, transaction state, call result</span>
+                <span class="mono muted">Composed</span>
+              </div>
+              <div class="board__row">
+                <span class="board__label mono">Guardrail</span>
+                <span class="board__type">New client, same contract — theme the surface, keep the structure</span>
+                <span class="mono muted">Documented</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p>
+          The result was not a promise of infinite reuse. It was a shorter path from a signed
+          client to a first working screen, with fewer one-off components to maintain.
+        </p>
+      </div>
+    </section>
+
+    <section class="sys-block" id="ai">
+      <div class="sys-block__rail">
+        <span class="cs-section__num">03</span>
+        <span class="cs-section__label mono">AI workflow</span>
+      </div>
+      <div class="sys-block__body">
+        <h2>Use AI for range. Keep judgment human.</h2>
+        <p>
+          AI is useful in design work when it expands the number of things you can consider, not
+          when it removes the considering. I use it for research synthesis, first-draft copy,
+          variant exploration and QA checklists. I do not use it to decide what the problem is,
+          what the trade-off should be, or what ships.
+        </p>
+
+        <div class="sys-visual">
+          <Diagram
+            variant="workflow"
+            caption="The workflow: AI widens the first three steps; judgment owns the last two."
+          />
+        </div>
+
+        <h3>Where it helped</h3>
+        <ul>
+          <li>Clustering open-ended research notes into themes I could then verify against the source.</li>
+          <li>Generating copy variants for states and microcopy, then rewriting the ones that carried trust.</li>
+          <li>Producing edge-case checklists for money flows and operational screens.</li>
+          <li>Turning a component inventory into a first-pass documentation structure.</li>
+        </ul>
+
+        <h3>Where judgment stayed</h3>
+        <ul>
+          <li>Framing the problem and choosing what not to build.</li>
+          <li>Deciding which trade-off was acceptable, and who carried the cost.</li>
+          <li>Checking domain rules: fees, limits, reversals, permissions and KYC.</li>
+          <li>Final craft, accessibility and the tone of a failure state.</li>
+        </ul>
+
+        <p>
+          The guardrails are simple: no client data in public tools, no unverified number in a
+          deliverable, no generated screen accepted without a reason. AI can produce a plausible
+          answer. It cannot take responsibility for one.
+        </p>
+      </div>
+    </section>
+
+    <section class="sys-block" id="qa">
+      <div class="sys-block__rail">
+        <span class="cs-section__num">04</span>
+        <span class="cs-section__label mono">Design QA</span>
+      </div>
+      <div class="sys-block__body">
+        <h2>The version that ships is the design.</h2>
+        <p>
+          Design QA is the habit that protects the work after the handoff. I review the build
+          against the decisions, not against the mockup: does the hierarchy survive real data,
+          does the state tell the truth, does the empty screen still have a next action?
+        </p>
+
+        <div class="sys-visual">
+          <div class="board">
+            <div class="board__head mono">
+              <span>Release checklist</span>
+              <span>Every build</span>
+            </div>
+            <div class="board__rows">
+              <div class="board__row">
+                <span class="board__label mono">01</span>
+                <span class="board__type">Hierarchy, spacing and type scale survive real content</span>
+                <span class="mono muted">Visual</span>
+              </div>
+              <div class="board__row">
+                <span class="board__label mono">02</span>
+                <span class="board__type">Empty, loading, error, success and edge states exist</span>
+                <span class="mono muted">States</span>
+              </div>
+              <div class="board__row">
+                <span class="board__label mono">03</span>
+                <span class="board__type">Keyboard, focus, contrast and 200% zoom hold</span>
+                <span class="mono muted">Access</span>
+              </div>
+              <div class="board__row">
+                <span class="board__label mono">04</span>
+                <span class="board__type">Numbers, fees and limits match the source of truth</span>
+                <span class="mono muted">Truth</span>
+              </div>
+              <div class="board__row">
+                <span class="board__label mono">05</span>
+                <span class="board__type">The shipped version is documented back into the library</span>
+                <span class="mono muted">System</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p>
+          What it catches is rarely glamorous: a missing disabled state, a fee that appears after
+          confirmation, a table that breaks at 320px, a status colour that means two different
+          things. Those are the details that decide whether a product feels trustworthy.
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <section class="section section--ink">
+    <div class="wrap">
+      <p class="eyebrow"><span class="dot"></span><span>See it in the work</span></p>
+      <h2 class="display-l" style="margin-top: 20px; max-width: 15ch;">The system is only real when it ships.</h2>
+      <div class="systems-links">
+        <a href="/work/engagement-archetypes">
+          <span class="mono">01 · Platform</span>
+          <strong>One platform, four kinds of loyalty</strong>
+          <Icon name="arrow-up-right" size={22} />
+        </a>
+        <a href="/work/merchant-wallet">
+          <span class="mono">02 · Fintech</span>
+          <strong>Designing trust for cash-first merchants</strong>
+          <Icon name="arrow-up-right" size={22} />
+        </a>
+        <a href="/work/agent-dashboard">
+          <span class="mono">03 · Operations</span>
+          <strong>A queue, not a feature list</strong>
+          <Icon name="arrow-up-right" size={22} />
+        </a>
+      </div>
+      <a class="btn btn--light" style="margin-top: 40px;" href="/#contact">Contact <Icon name="arrow-up-right" size={14} /></a>
+    </div>
+  </section>
+</Base>

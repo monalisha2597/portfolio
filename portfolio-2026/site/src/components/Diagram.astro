@@ -1,0 +1,272 @@
+---
+interface Props {
+  variant: 'archetypes' | 'rails' | 'ia' | 'matrix' | 'states' | 'library' | 'workflow';
+  caption?: string;
+}
+
+const { variant, caption } = Astro.props;
+
+const archetypes = [
+  {
+    name: 'Point Utilization',
+    industry: 'Telecom · Retail',
+    model: 'Balance as hero. Quick actions, cashback, streaks and games.',
+    tone: 'var(--cobalt)',
+  },
+  {
+    name: 'Progress Driven',
+    industry: 'Banking · Fitness',
+    model: 'Journey and levels as the central narrative.',
+    tone: 'var(--ink)',
+  },
+  {
+    name: 'Reward Driven',
+    industry: 'Travel · Hospitality',
+    model: 'Aspirational catalogue, redemption history, VIP tiers.',
+    tone: 'var(--ember)',
+  },
+  {
+    name: 'Balanced Hybrid',
+    industry: 'Super apps · Multi-vertical',
+    model: 'Points and progress as peers, composed per client.',
+    tone: 'var(--acid)',
+  },
+];
+
+const rails = [
+  { name: 'Cash with agent', note: 'The rail people already trust.' },
+  { name: 'Bank account', note: 'For merchants with an account.' },
+  { name: 'Bank card', note: 'Top-up and withdrawal.' },
+  { name: 'Mobile money', note: 'The network they already use.' },
+];
+
+const states = [
+  { name: 'Settled', note: 'Money has landed. Say so once, clearly.', tone: 'var(--cobalt)' },
+  { name: 'Pending', note: 'Explain what is happening and when it will resolve.', tone: 'var(--ember)' },
+  { name: 'Failed', note: 'Name the cause and the next action. Never a dead end.', tone: 'var(--ember)' },
+  { name: 'Reversed', note: 'Return the balance, the fee and the confidence.', tone: 'var(--ink)' },
+];
+
+const workflow = [
+  { n: '01', name: 'Frame', note: 'Write the problem, constraints and success signal.' },
+  { n: '02', name: 'Generate', note: 'Use AI for variants, synthesis and first drafts.' },
+  { n: '03', name: 'Judge', note: 'Test against evidence, domain rules and ethics.' },
+  { n: '04', name: 'Edit', note: 'Redraw the parts that carry the argument.' },
+  { n: '05', name: 'Ship', note: 'Handoff, QA, and the version that survives build.' },
+];
+---
+
+<div class="diagram">
+  {variant === 'archetypes' && (
+    <div class="arch">
+      <div class="arch__core">
+        <span class="mono">Shared core</span>
+        <strong>One module library</strong>
+        <small>Cards · states · tokens · composition rules. The archetypes arrange the same parts differently.</small>
+      </div>
+      <div class="arch__surfaces">
+        {archetypes.map((item) => (
+          <div class="arch__card" style={`--tone: ${item.tone};`}>
+            <span class="mono">{item.industry}</span>
+            <p class="arch__card__title">{item.name}</p>
+            <p>{item.model}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  )}
+
+  {variant === 'rails' && (
+    <div>
+      <div class="rails__row">
+        <span class="rail-node">Merchant</span>
+        <span class="rail-arrow">→</span>
+        <span class="rail-node">Wallet</span>
+        <span class="rail-arrow">→</span>
+        <span class="rail-node rail-node--accent">Agent rail</span>
+        <span class="rail-arrow">→</span>
+        <span class="rail-node">Jabu ledger</span>
+        <span class="rail-arrow">→</span>
+        <span class="rail-node rail-node--acid">Reconciled</span>
+      </div>
+      <div class="rails__tracks">
+        {rails.map((rail, index) => (
+          <div class="rail-track">
+            <span class="mono">Rail {String(index + 1).padStart(2, '0')}</span>
+            <strong>{rail.name}</strong>
+            <p>{rail.note}</p>
+          </div>
+        ))}
+      </div>
+      <div class="rails__states">
+        {states.map((state) => (
+          <span class="state-chip" style={`--tone: ${state.tone};`}>{state.name}</span>
+        ))}
+      </div>
+    </div>
+  )}
+
+  {variant === 'ia' && (
+    <div class="ia">
+      <div class="ia__panel">
+        <span class="mono">Old board</span>
+        <div class="ia-dense">
+          <span style="--w: 96%"></span>
+          <span style="--w: 78%"></span>
+          <span style="--w: 100%"></span>
+          <span style="--w: 64%"></span>
+          <span style="--w: 88%"></span>
+          <span style="--w: 72%"></span>
+          <span style="--w: 92%"></span>
+          <span style="--w: 58%"></span>
+          <span style="--w: 84%"></span>
+          <span style="--w: 70%"></span>
+          <span style="--w: 96%"></span>
+          <span style="--w: 52%"></span>
+        </div>
+      </div>
+      <span class="ia__arrow">→</span>
+      <div class="ia__panel">
+        <span class="mono">Information audit</span>
+        <ul class="ia-audit">
+          <li>Filter by customer group</li>
+          <li>Reduce the opening scroll</li>
+          <li>Separate performance view</li>
+          <li>Call-result logic tree</li>
+          <li>Free the fixed customer frame</li>
+          <li>Surface offers in the board</li>
+        </ul>
+      </div>
+      <span class="ia__arrow">→</span>
+      <div class="ia__panel" style="border-color: var(--cobalt);">
+        <span class="mono">New structure</span>
+        <div class="ia-zones">
+          <div class="ia-zone">
+            <strong>Stats</strong>
+            <span>Orders · GMV · basket · SKUs · last order</span>
+          </div>
+          <div class="ia-zone ia-zone--ink">
+            <strong>Call-related</strong>
+            <span>Last interaction · requests · call result</span>
+          </div>
+          <div class="ia-zone ia-zone--acid">
+            <strong>General info</strong>
+            <span>Customer details · history · recommendations</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  )}
+
+  {variant === 'matrix' && (
+    <div class="matrix-wrap">
+      <table class="matrix">
+        <thead>
+          <tr>
+            <th>Industry</th>
+            <th>Primary motivation</th>
+            <th>First action</th>
+            <th>Archetype</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Telecom</td>
+            <td>Burn points before they expire</td>
+            <td>Redeem now</td>
+            <td>Point Utilization</td>
+          </tr>
+          <tr>
+            <td>Banking</td>
+            <td>See progress toward a milestone</td>
+            <td>Continue the journey</td>
+            <td>Progress Driven</td>
+          </tr>
+          <tr>
+            <td>Travel</td>
+            <td>Find an aspirational reward</td>
+            <td>Browse the catalogue</td>
+            <td>Reward Driven</td>
+          </tr>
+          <tr>
+            <td>Retail</td>
+            <td>Act on a timely offer</td>
+            <td>Claim and spend</td>
+            <td>Point Utilization</td>
+          </tr>
+          <tr>
+            <td>Super app</td>
+            <td>Mixed, by segment</td>
+            <td>Choose their own route</td>
+            <td>Balanced Hybrid</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  )}
+
+  {variant === 'states' && (
+    <div class="states-grid">
+      {states.map((state) => (
+        <div class="state-card" style={`--tone: ${state.tone};`}>
+          <span class="mono">{state.name}</span>
+          <p class="state-card__title">{state.name}</p>
+          <p>{state.note}</p>
+        </div>
+      ))}
+    </div>
+  )}
+
+  {variant === 'library' && (
+    <div class="library">
+      <div class="library__row">
+        <span class="mono">Colour</span>
+        <div class="library__swatches">
+          <span style="background: var(--ink);" data-name="Ink"></span>
+          <span style="background: var(--cobalt);" data-name="Cobalt"></span>
+          <span style="background: var(--acid);" data-name="Acid"></span>
+          <span style="background: var(--paper-deep);" data-name="Paper"></span>
+        </div>
+      </div>
+      <div class="library__row">
+        <span class="mono">Type</span>
+        <div class="library__types">
+          <span>Display / 40</span>
+          <span>Body / 17 · 1.6</span>
+          <span>LABEL / 12 · 0.08</span>
+        </div>
+      </div>
+      <div class="library__row">
+        <span class="mono">Components</span>
+        <div class="library__chips">
+          <span>Button</span>
+          <span>Card</span>
+          <span>Status</span>
+          <span>Empty state</span>
+          <span>Stat</span>
+          <span>Filter</span>
+          <span>Call result</span>
+        </div>
+      </div>
+    </div>
+  )}
+
+  {variant === 'workflow' && (
+    <div class="workflow">
+      {workflow.map((step) => (
+        <div class="workflow__step">
+          <span class="mono">{step.n}</span>
+          <strong>{step.name}</strong>
+          <p>{step.note}</p>
+        </div>
+      ))}
+    </div>
+  )}
+
+  {caption && (
+    <p class="diagram__caption">
+      <span class="mono" style="color: var(--cobalt);">Fig.</span>
+      {caption}
+    </p>
+  )}
+</div>

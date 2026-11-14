@@ -1,0 +1,140 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import Diagram from '../../components/Diagram.astro';
+import ProjectPlate from '../../components/ProjectPlate.astro';
+import Icon from '../../components/Icon.astro';
+import { site } from '../../consts';
+
+export async function getStaticPaths() {
+  const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+  return projects.map((project) => ({
+    params: { slug: project.data.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+const data = project.data;
+
+const all = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+const next = all.find((item) => item.data.slug === data.next) ?? all[0];
+
+const heroCaptions = {
+  archetypes:
+    'One shared module library, four interface surfaces. Redrawn from the project’s published archetype system.',
+  rails:
+    'The money rails and status model. Redrawn from the project’s published flow map.',
+  ia:
+    'From a dense board, through an information audit, to three zones. Redrawn from the project’s published IA work.',
+};
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CreativeWork',
+  name: data.title,
+  headline: data.title,
+  description: data.description,
+  url: `${site.url}/work/${data.slug}`,
+  creator: {
+    '@type': 'Person',
+    name: site.name,
+    url: site.url,
+  },
+  about: data.scope,
+  keywords: ['product design', 'UX', 'case study', data.platform],
+};
+---
+
+<Base
+  title={`${data.title} — Monalisha Chatterjee`}
+  description={data.description}
+  image={data.ogImage}
+  type="article"
+  jsonLd={jsonLd}
+  bodyClass="page-work"
+>
+  <div class="read-progress" data-read-progress aria-hidden="true"></div>
+
+  <article>
+    <header class:list={['cs-hero', data.theme === 'ink' && 'cs-hero--ink']}>
+      <div class="wrap">
+        <div class="cs-topline">
+          <a class="cs-back mono" href="/#work">
+            <Icon name="arrow-left" size={13} />
+            All work
+          </a>
+          <span class="mono">Case study · {data.year}</span>
+        </div>
+
+        <h1 class="cs-hero__title">{data.title}</h1>
+        <p class="cs-hero__sub">{data.subtitle}</p>
+
+        <div class="cs-outcome">
+          {data.outcome.map((metric) => (
+            <div class="cs-outcome__item">
+              <span class="cs-outcome__value">{metric.value}</span>
+              <span class="cs-outcome__label mono">{metric.label}</span>
+              {metric.note && <span class="cs-outcome__note mono">{metric.note}</span>}
+            </div>
+          ))}
+        </div>
+
+        <dl class="cs-meta">
+          {data.meta.map((item) => (
+            <div class="cs-meta__item">
+              <dt>{item.label}</dt>
+              <dd>{item.value}</dd>
+            </div>
+          ))}
+        </dl>
+
+        <div class="cs-visual">
+          <Diagram variant={data.heroDiagram} caption={heroCaptions[data.heroDiagram]} />
+        </div>
+
+        <div class="cs-summary">
+          <div class="cs-summary__item">
+            <span class="mono">Problem</span>
+            <p>{data.problem}</p>
+          </div>
+          <div class="cs-summary__item">
+            <span class="mono">The bet</span>
+            <p>{data.bet}</p>
+          </div>
+          <div class="cs-summary__item cs-summary__item--accent">
+            <span class="mono">Outcome</span>
+            <p>{data.outcomeLine}</p>
+          </div>
+          <div class="cs-summary__item">
+            <span class="mono">What I learned</span>
+            <p>{data.learned}</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="wrap">
+      <div class="cs-body" data-cs-body>
+        <Content />
+      </div>
+    </div>
+  </article>
+
+  <a class="next-project" href={`/work/${next.data.slug}`}>
+    <div class="wrap next-project__inner">
+      <div class="next-project__text">
+        <p class="next-project__label mono">
+          Next case study
+          <Icon name="arrow-right" size={16} stroke={1.6} />
+        </p>
+        <h2 class="next-project__title">{next.data.title}</h2>
+      </div>
+      <div class="next-project__media">
+        <ProjectPlate variant={next.data.cover} />
+      </div>
+    </div>
+  </a>
+</Base>

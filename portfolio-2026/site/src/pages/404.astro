@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+---
+
+<Base title="Page not found — Monalisha Chatterjee" description="This page does not exist. Here is the work." bodyClass="page-404">
+  <meta slot="head" name="robots" content="noindex" />
+
+  <section class="notfound">
+    <div class="wrap notfound__grid">
+      <div class="notfound__copy">
+        <p class="eyebrow"><span class="dot"></span><span>404</span></p>
+        <h1 style="margin-top: 18px;">This page doesn&rsquo;t exist.</h1>
+        <p>Here is the work instead: three case studies on systems, trust and operational tools.</p>
+        <div class="notfound__links">
+          <a class="btn" href="/#work">See the work <Icon name="arrow-down" size={14} /></a>
+          <a class="link-arrow" href="/resume">Résumé <Icon name="arrow-up-right" size={13} /></a>
+          <a class="link-arrow" href={`mailto:mona.chatterjee25@gmail.com`}>Email <Icon name="arrow-up-right" size={13} /></a>
+        </div>
+      </div>
+      <div class="notfound__code-block" aria-hidden="true">
+        <span class="notfound__code">404</span>
+      </div>
+    </div>
+  </section>
+</Base>

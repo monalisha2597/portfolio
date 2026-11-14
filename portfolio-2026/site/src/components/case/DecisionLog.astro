@@ -1,0 +1,42 @@
+---
+interface Decision {
+  decision: string;
+  options: string;
+  tradeoff: string;
+  choice: string;
+  why: string;
+}
+
+interface Props {
+  items: Decision[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="decisions">
+  {items.map((item, index) => (
+    <article class="decision">
+      <p class="decision__index mono">Decision {String(index + 1).padStart(2, '0')}</p>
+      <h3 class="decision__title">{item.decision}</h3>
+      <dl class="decision__grid">
+        <div>
+          <dt>Options</dt>
+          <dd>{item.options}</dd>
+        </div>
+        <div>
+          <dt>Trade-off</dt>
+          <dd>{item.tradeoff}</dd>
+        </div>
+        <div>
+          <dt>Choice</dt>
+          <dd class="choice">{item.choice}</dd>
+        </div>
+        <div>
+          <dt>Why</dt>
+          <dd>{item.why}</dd>
+        </div>
+      </dl>
+    </article>
+  ))}
+</div>

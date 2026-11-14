@@ -1,0 +1,50 @@
+---
+interface Props {
+  name?: 'arrow-up-right' | 'arrow-right' | 'arrow-left' | 'arrow-down' | 'close';
+  size?: number;
+  stroke?: number;
+}
+
+const { name = 'arrow-right', size = 16, stroke = 1.5 } = Astro.props;
+---
+
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 16 16"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+  focusable="false"
+>
+  {name === 'arrow-up-right' && (
+    <>
+      <path d="M4 12L12 4" stroke="currentColor" stroke-width={stroke} stroke-linecap="square" />
+      <path d="M5.25 4H12V10.75" stroke="currentColor" stroke-width={stroke} stroke-linecap="square" />
+    </>
+  )}
+  {name === 'arrow-right' && (
+    <>
+      <path d="M2 8H14" stroke="currentColor" stroke-width={stroke} stroke-linecap="square" />
+      <path d="M9 3L14 8L9 13" stroke="currentColor" stroke-width={stroke} stroke-linecap="square" />
+    </>
+  )}
+  {name === 'arrow-left' && (
+    <>
+      <path d="M14 8H2" stroke="currentColor" stroke-width={stroke} stroke-linecap="square" />
+      <path d="M7 3L2 8L7 13" stroke="currentColor" stroke-width={stroke} stroke-linecap="square" />
+    </>
+  )}
+  {name === 'arrow-down' && (
+    <>
+      <path d="M8 2V14" stroke="currentColor" stroke-width={stroke} stroke-linecap="square" />
+      <path d="M3 9L8 14L13 9" stroke="currentColor" stroke-width={stroke} stroke-linecap="square" />
+    </>
+  )}
+  {name === 'close' && (
+    <>
+      <path d="M3 3L13 13" stroke="currentColor" stroke-width={stroke} stroke-linecap="square" />
+      <path d="M13 3L3 13" stroke="currentColor" stroke-width={stroke} stroke-linecap="square" />
+    </>
+  )}
+</svg>
