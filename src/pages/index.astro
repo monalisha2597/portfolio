@@ -1,0 +1,331 @@
+---
+import Base from '../layouts/Base.astro';
+import { site, projects, chapters, steps, testimonials, certifications, skills, practice } from '../data/site';
+---
+
+<Base>
+  <!-- ============================ HERO ============================ -->
+  <section class="hero" id="top">
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <div class="marquee__row">
+          <span>Product designer</span><i>✦</i>
+          <span>B2B SaaS</span><i>✦</i>
+          <span>Loyalty &amp; engagement</span><i>✦</i>
+          <span>CRM</span><i>✦</i>
+          <span>E-commerce</span><i>✦</i>
+          <span>Fintech</span><i>✦</i>
+          <span>Learning platforms</span><i>✦</i>
+        </div>
+        <div class="marquee__row">
+          <span>Product designer</span><i>✦</i>
+          <span>B2B SaaS</span><i>✦</i>
+          <span>Loyalty &amp; engagement</span><i>✦</i>
+          <span>CRM</span><i>✦</i>
+          <span>E-commerce</span><i>✦</i>
+          <span>Fintech</span><i>✦</i>
+          <span>Learning platforms</span><i>✦</i>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap hero__inner">
+      <div class="hero__grid">
+        <div class="hero__copy">
+          <p class="eyebrow hero__eyebrow">Product designer · Bengaluru, India</p>
+
+          <h1 class="hero__title">
+            <span class="line"><span>Give me the</span></span>
+            <span class="line"><span><em>whole</em> problem.</span></span>
+          </h1>
+
+          <p class="hero__lede">
+            I'm Monalisha, a product designer in Bengaluru. I'd rather own the whole product than a
+            slice of it, research, flows, screens, prototypes, and the QA pass that keeps it all
+            honest. Four years in, mostly as the only designer in the room.
+          </p>
+
+          <div class="hero__actions">
+            <a class="btn btn--solid" href="#work">
+              See the work
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                <path d="M2 6h8M6.5 2.5 10 6l-3.5 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a class="quiet-link" href="#journey">Read the journey</a>
+          </div>
+        </div>
+
+        <figure class="portrait">
+          <span class="portrait__sticker">Open to work</span>
+          <div class="portrait__frame">
+            <img
+              src="/img/monalisha.jpg"
+              width="960"
+              height="1200"
+              alt="Monalisha Chatterjee, product designer, photographed outdoors in Bengaluru"
+              fetchpriority="high"
+            />
+          </div>
+          <figcaption class="portrait__caption">
+            <span>Monalisha Chatterjee</span>
+            <span>Bengaluru · IN</span>
+          </figcaption>
+        </figure>
+      </div>
+
+      <ul class="hero__meta">
+        <li><span class="available">Available for work</span></li>
+        <li>4+ years in product design</li>
+        <li>Now at Perx Technologies</li>
+        <li>Prev. Jabu (YC S21)</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================ WORK ============================ -->
+  <section class="section" id="work">
+    <div class="wrap">
+      <header class="sec-head" data-reveal>
+        <h2 class="sec-head__title">Selected work <sup>04</sup></h2>
+        <p class="sec-head__note">Loyalty, CRM, commerce and fintech, shipped product work, not concepts.</p>
+      </header>
+
+      <div class="work__list">
+        {projects.map((p) => (
+          <article class="work-item">
+            <a class="work-item__media" href={`/work/${p.slug}`} aria-label={`Read the ${p.title} case study`}>
+              <img src={p.cover} width="808" height="632" alt={p.coverAlt} loading="lazy" />
+            </a>
+
+            <div class="work-item__body" data-reveal>
+              <p class="work-item__index"><span>{p.index}</span> {p.domain}</p>
+              <h3 class="work-item__title">
+                <a href={`/work/${p.slug}`}>{p.title}</a>
+              </h3>
+              <p class="work-item__desc">{p.card}</p>
+              <p class="work-item__meta">
+                <span>{p.client}</span>
+                <span class="sep" aria-hidden="true"></span>
+                <span>{p.year}</span>
+                <span class="sep" aria-hidden="true"></span>
+                <span>{p.role}</span>
+              </p>
+              <a class="work-item__arrow" href={`/work/${p.slug}`}>
+                Read the case study
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                  <path d="M3 9 9 3M9 3H4.2M9 3v4.8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div class="practice" data-reveal>
+        <div class="practice__label">
+          Practice &amp; experiments
+          <em>The work before the work, kept public on purpose.</em>
+        </div>
+        <div class="practice__list">
+          {practice.map((item) => (
+            <a href={site.behance} target="_blank" rel="noopener">
+              {item.name}
+              <span>{item.meta} ↗</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ JOURNEY ============================ -->
+  <section class="section journey" id="journey">
+    <div class="wrap">
+      <header class="sec-head" data-reveal>
+        <h2 class="sec-head__title">The journey <sup>05</sup></h2>
+        <p class="sec-head__note">Four years in product design, mostly as the only designer in the room.</p>
+      </header>
+
+      <div class="chapters">
+        <div class="rail" aria-hidden="true"><div class="rail__progress"></div></div>
+
+        {chapters.map((c) => (
+          <div class="chapter">
+            <span class="chapter__marker" aria-hidden="true"></span>
+            <div class="chapter__period">{c.period}</div>
+            <div class="chapter__body">
+              <p class="chapter__org">
+                {c.org}
+                {c.promo && <span class="promo">Promoted</span>}
+              </p>
+              <h3 class="chapter__role">{c.role}</h3>
+              <p class="chapter__text">{c.text}</p>
+              <div class="chapter__tags">
+                {c.tags.map((t) => <span>{t}</span>)}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ PROCESS ============================ -->
+  <section class="section" id="process">
+    <div class="wrap">
+      <header class="sec-head" data-reveal>
+        <h2 class="sec-head__title">How I work <sup>04</sup></h2>
+        <p class="sec-head__note">Opinionated on purpose. Adjusted every time.</p>
+      </header>
+
+      <div class="process__grid" data-stagger="110">
+        {steps.map((s) => (
+          <div class="step">
+            <span class="step__num">{s.num}</span>
+            <h3 class="step__title">{s.title}</h3>
+            <p class="step__text">{s.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ TESTIMONIALS ============================ -->
+  <section class="section" id="words">
+    <div class="wrap">
+      <header class="sec-head" data-reveal>
+        <h2 class="sec-head__title">What people say</h2>
+        <p class="sec-head__note">Recommendations from LinkedIn, lightly edited for length.</p>
+      </header>
+
+      <figure class="quote-lead" data-reveal>
+        <span class="quote-lead__mark" aria-hidden="true">“</span>
+        <div>
+          <blockquote>{testimonials.lead.quote}</blockquote>
+          <figcaption>
+            <div class="person">
+              <span class="avatar" aria-hidden="true">
+                <span class="avatar__mono">{testimonials.lead.initials}</span>
+                <img src={testimonials.lead.photo} alt="" loading="lazy" decoding="async" />
+              </span>
+              <div class="attribution">
+                <b>{testimonials.lead.name}</b>
+                <span>{testimonials.lead.title} · {testimonials.lead.relation}</span>
+              </div>
+            </div>
+          </figcaption>
+        </div>
+      </figure>
+
+      <div class="quotes" data-stagger="90">
+        {testimonials.rest.map((t) => (
+          <figure>
+            <blockquote>“{t.quote}”</blockquote>
+            <figcaption>
+              <div class="person">
+                <span class="avatar" aria-hidden="true">
+                  <span class="avatar__mono">{t.initials}</span>
+                  <img src={t.photo} alt="" loading="lazy" decoding="async" />
+                </span>
+                <div class="attribution">
+                  <b>{t.name}</b>
+                  <span>{t.title} · {t.relation}</span>
+                </div>
+              </div>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+
+      <p class="t-note" data-reveal>
+        All five recommendations are public and verifiable on
+        <a href={site.linkedin} target="_blank" rel="noopener">LinkedIn ↗</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================ ABOUT ============================ -->
+  <section class="section" id="about">
+    <div class="wrap">
+      <header class="sec-head" data-reveal>
+        <h2 class="sec-head__title">Background</h2>
+        <p class="sec-head__note">The part that isn't on the résumé.</p>
+      </header>
+
+      <div class="about">
+        <div class="about__text" data-reveal>
+          <p>
+            I like the whole problem, not just the visible part of it. Most of my work has been in
+            small teams where the designer owns it end to end, the research, the wires, the
+            screens, the prototype, and the awkward QA pass three days before release.
+          </p>
+          <p class="small">
+            I'm Monalisha, a self-taught product designer currently residing in Bengaluru. I try to
+            understand the business before I touch the interface, and I care more about whether
+            something works than whether it photographs well.
+          </p>
+          <p class="small">
+            Outside work I'm usually travelling, taking photos, cooking, or with my people and my
+            pets.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="list-head">Certifications &amp; programmes</h3>
+          <ul class="spec-list">
+            {certifications.map((c) => (
+              <li>{c.name}<span>{c.meta}</span></li>
+            ))}
+          </ul>
+
+          <h3 class="list-head" style="margin-top:2.2rem;">Tools &amp; practice</h3>
+          <div class="chips">
+            {skills.map((s) => <span>{s}</span>)}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ CONTACT ============================ -->
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <p class="eyebrow" data-reveal>Contact</p>
+      <h2 class="contact__title" data-reveal>
+        Let's make something <em>useful</em>.
+      </h2>
+
+      <div class="contact__grid">
+        <div data-reveal>
+          <a class="email-link" href={`mailto:${site.email}`} data-copy={site.email}>
+            {site.email}
+            <svg width="15" height="15" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M3 9 9 3M9 3H4.2M9 3v4.8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <span class="copy-hint">Click to copy · or just write to me the normal way</span>
+        </div>
+
+        <div class="contact__side" data-reveal>
+          <a href={site.linkedin} target="_blank" rel="noopener">
+            LinkedIn
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M3 9 9 3M9 3H4.2M9 3v4.8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href={site.behance} target="_blank" rel="noopener">
+            Behance
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M3 9 9 3M9 3H4.2M9 3v4.8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <p>
+            Based in Bengaluru, working remotely with teams in Singapore and Africa. Open to product
+            design roles and select freelance projects.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
