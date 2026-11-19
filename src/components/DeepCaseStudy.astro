@@ -1,0 +1,441 @@
+---
+interface Props {
+  project: any;
+  next: any;
+}
+
+const { project, next } = Astro.props;
+const s = project.study;
+---
+
+<article class="cs cs--deep" id="top">
+  <header class="cs-hero">
+    <div class="wrap">
+      <a class="back" href="/#work">
+        <svg width="13" height="13" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <path d="M10 6H2M5.5 2.5 2 6l3.5 3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        All work
+      </a>
+
+      <p class="eyebrow" style="margin-bottom:1.2rem;">{project.client} · {project.year} · {s.kicker}</p>
+      <h1 class="cs-title">{project.title}</h1>
+      <p class="cs-lede">{s.lede}</p>
+
+      <div class="cs-result">
+        <div class="cs-result__top">
+          <p class="cs-result__label">{s.resultLabel}</p>
+          <p class="cs-result__text">{s.result}</p>
+        </div>
+        <ul class="cs-result__facts">
+          {s.facts.map((f: any) => (
+            <li><b>{f.value}</b><span>{f.label}</span></li>
+          ))}
+        </ul>
+      </div>
+
+      <dl class="cs-meta cs-meta--deep">
+        {s.meta.map((m: any) => (
+          <div>
+            <dt>{m.label}</dt>
+            <dd>{m.value}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+
+    <div class="wrap">
+      <div class="cs-showcase">
+        <div class="cs-showcase__intro">
+          <p class="cs-showcase__kicker">Walkthrough</p>
+          <h2 class="cs-showcase__title">{s.showcase.title}</h2>
+          <p class="cs-showcase__copy">{s.showcase.copy}</p>
+          <p class="cs-showcase__hint">Screens from the shipped MVP. Client work under NDA.</p>
+        </div>
+        <div class="screens screens--3">
+          {s.showcase.screens.map((sc: any) => (
+            <figure class="screen">
+              <div class="screen__frame">
+                <img
+                  src={sc.src}
+                  width={sc.width}
+                  height={sc.height}
+                  alt={sc.alt}
+                  loading="eager"
+                  decoding="async"
+                />
+              </div>
+              <figcaption><b>{sc.label}</b><span>{sc.note}</span></figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <section class="cs-section" id="setup">
+      <div class="cs-section__head">
+        <h2><span>01</span>The setup</h2>
+        <div class="cs-prose">
+          {s.setup.prose.map((p: string) => <p>{p}</p>)}
+        </div>
+      </div>
+      <div class="cs-cards">
+        {s.setup.cards.map((c: any) => (
+          <div class="cs-card" style={`--accent:${c.accent}`}>
+            <h3>{c.title}</h3>
+            <p>{c.text}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="cs-section" id="bet">
+      <div class="cs-section__head">
+        <h2><span>02</span>The bet</h2>
+        <div class="cs-prose">
+          <blockquote class="cs-pull">{s.bet.quote}</blockquote>
+          <p class="cs-success"><b>How we would know</b>{s.bet.success}</p>
+        </div>
+      </div>
+      <div class="cs-principles">
+        {s.bet.principles.map((p: any) => (
+          <div class="principle" style={`--accent:${p.accent}`}>
+            <span class="principle__num">{p.num}</span>
+            <h3>{p.title}</h3>
+            <p>{p.text}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="cs-section" id="research">
+      <div class="cs-section__head">
+        <h2><span>03</span>Research</h2>
+        <div class="cs-prose">
+          <p>{s.research.intro}</p>
+        </div>
+      </div>
+
+      <div class="cs-stages">
+        {s.research.stages.map((st: any) => (
+          <div class="stage">
+            <span class="stage__num">{st.num}</span>
+            <h3>{st.title}</h3>
+            <p>{st.text}</p>
+          </div>
+        ))}
+      </div>
+
+      <figure class="cs-figure">
+        <img
+          src={s.research.artefact.src}
+          width={s.research.artefact.width}
+          height={s.research.artefact.height}
+          alt={s.research.artefact.alt}
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption>{s.research.artefact.caption}</figcaption>
+      </figure>
+
+      <div class="cs-insights">
+        {s.research.insights.map((i: any) => (
+          <div class="insight">
+            <span class="insight__num">{i.num}</span>
+            <h3>{i.title}</h3>
+            <p>{i.text}</p>
+            <p class="insight__move"><b>What it changed</b>{i.move}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="cs-section" id="users">
+      <div class="cs-section__head">
+        <h2><span>04</span>Who we designed for</h2>
+        <div class="cs-prose">
+          <p>Three people share the same balance, and each one needed a different product. The personas came out of the ambassador interviews and drove scope decisions on all three surfaces.</p>
+        </div>
+      </div>
+
+      <div class="personas">
+        {s.personas.map((p: any) => (
+          <article class="persona">
+            <header class="persona__head">
+              <img src={p.photo} width="360" height="360" alt={p.photoAlt} loading="lazy" decoding="async" />
+              <div>
+                <h3>{p.name}</h3>
+                <p>{p.role}</p>
+              </div>
+            </header>
+            <div class="persona__body">
+              <div>
+                <h4>Goals</h4>
+                <ul>{p.goals.map((g: string) => <li>{g}</li>)}</ul>
+              </div>
+              <div>
+                <h4>Pain points</h4>
+                <ul>{p.pains.map((g: string) => <li>{g}</li>)}</ul>
+              </div>
+              <p class="persona__habit"><b>Money habit</b>{p.habit}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="cs-section" id="system">
+      <div class="cs-section__head">
+        <h2><span>05</span>Map the system</h2>
+        <div class="cs-prose">
+          <p>{s.system.intro}</p>
+        </div>
+      </div>
+
+      <div class="cs-map" data-cs-map>
+        <div class="cs-figure cs-map__viewer">
+          {s.system.sitemaps.map((m: any, i: number) => (
+            <figure
+              class="cs-map__panel"
+              id={`sitemap-${m.key}`}
+              data-map-panel={m.key}
+              role="tabpanel"
+              aria-labelledby={`sitemap-tab-${m.key}`}
+              hidden={i !== 0}
+              tabindex="0"
+            >
+              <img
+                src={m.src}
+                width={m.width}
+                height={m.height}
+                alt={m.alt}
+                loading="eager"
+                decoding="async"
+              />
+              <figcaption><b class="cs-map__cap-label">{m.label}</b>{m.caption}</figcaption>
+            </figure>
+          ))}
+        </div>
+
+        <p class="cs-map__hint">{s.system.hint}</p>
+
+        <div
+          class="cs-cards cs-cards--surfaces cs-map__tabs"
+          role="tablist"
+          aria-label="Platform sitemaps"
+        >
+          {s.system.surfaces.map((surface: any, i: number) => (
+            <button
+              type="button"
+              class="cs-card cs-map__tab"
+              style={`--accent:${['var(--blue)', 'var(--pink)', 'var(--yellow)'][i]}`}
+              id={`sitemap-tab-${surface.map}`}
+              data-map-tab={surface.map}
+              role="tab"
+              aria-selected={i === 0 ? 'true' : 'false'}
+              aria-controls={`sitemap-${surface.map}`}
+              tabindex={i === 0 ? 0 : -1}
+            >
+              <span class="cs-map__tab-head">
+                <span class="cs-map__tab-title">{surface.title}</span>
+                <span class="cs-map__state" data-map-state>{i === 0 ? 'Viewing' : 'View map'}</span>
+              </span>
+              <span class="cs-map__tab-copy">{surface.text}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section" id="design">
+      <div class="cs-section__head">
+        <h2><span>06</span>Design the wallet</h2>
+        <div class="cs-prose">
+          <p>{s.design.intro}</p>
+        </div>
+      </div>
+
+      {s.design.plates.map((plate: any) => (
+        <div class="cs-plate" id={plate.id}>
+          <header class="cs-plate__head">
+            <p class="cs-plate__kicker">{plate.kicker}</p>
+            <h3>{plate.title}</h3>
+            <p>{plate.copy}</p>
+          </header>
+          <div class={`screens screens--${plate.screens.length}`}>
+            {plate.screens.map((sc: any) => (
+              <figure class="screen">
+                <div class="screen__frame">
+                  <img
+                    src={sc.src}
+                    width={sc.width}
+                    height={sc.height}
+                    alt={sc.alt}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <figcaption><b>{sc.label}</b><span>{sc.note}</span></figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      ))}
+    </section>
+
+    <section class="cs-section" id="build">
+      <div class="cs-section__head">
+        <h2><span>07</span>Build &amp; QA</h2>
+        <div class="cs-prose">
+          {s.build.prose.map((p: string) => <p>{p}</p>)}
+        </div>
+      </div>
+
+      <figure class="cs-figure">
+        <img
+          src={s.build.styleguide.src}
+          width={s.build.styleguide.width}
+          height={s.build.styleguide.height}
+          alt={s.build.styleguide.alt}
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption>{s.build.styleguide.caption}</figcaption>
+      </figure>
+
+      <div class="cs-qa">
+        <div>
+          <h3 class="cs-subhead">Edge cases we designed for</h3>
+          <ul class="cs-list">
+            {s.build.qa.map((q: string) => <li>{q}</li>)}
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="cs-subhead">{s.build.admin.title}</h3>
+          <p class="cs-qa__copy">{s.build.admin.copy}</p>
+        </div>
+      </div>
+
+      <div class="screens screens--2 cs-admin-screens">
+        {s.build.admin.screens.map((sc: any) => (
+          <figure class="screen">
+            <div class="screen__frame">
+              <img
+                src={sc.src}
+                width={sc.width}
+                height={sc.height}
+                alt={sc.alt}
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <figcaption><b>{sc.label}</b><span>{sc.note}</span></figcaption>
+          </figure>
+        ))}
+      </div>
+
+      <p class="cs-reflection">{s.build.reflection}</p>
+    </section>
+
+    <section class="cs-section" id="outcome">
+      <div class="cs-section__head">
+        <h2><span>08</span>Outcome</h2>
+        <div class="cs-prose">
+          <p>{s.outcome.summary}</p>
+        </div>
+      </div>
+
+      <div class="cs-outcome">
+        <p>{s.outcome.honesty}</p>
+      </div>
+
+      <div class="cs-outcome-grid">
+        <div>
+          <h3 class="cs-subhead">What shipped</h3>
+          <ul class="cs-list">
+            {s.outcome.shipped.map((item: string) => <li>{item}</li>)}
+          </ul>
+        </div>
+        <div>
+          <h3 class="cs-subhead">What changed</h3>
+          <ul class="cs-list">
+            {s.outcome.changed.map((item: string) => <li>{item}</li>)}
+          </ul>
+        </div>
+      </div>
+
+      <div class="cs-next">
+        <h3 class="cs-subhead">What I would do next</h3>
+        <ul class="cs-list">
+          {s.outcome.next.map((item: string) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </section>
+
+    <aside class="cs-cta">
+      <div>
+        <p class="cs-cta__title">{s.appendix.title}</p>
+        <p style="margin-top:0.6rem;">{s.appendix.copy}</p>
+      </div>
+      <a class="btn btn--solid" href={s.appendix.href} target="_blank" rel="noopener">
+        {s.appendix.linkLabel}
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <path d="M3 9 9 3M9 3H4.2M9 3v4.8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </aside>
+
+    {next && (
+      <nav class="next-project" aria-label="Next project">
+        <a href={`/work/${next.slug}`}>
+          <div>
+            <small>Next project</small>
+            <strong>{next.title}</strong>
+          </div>
+          <svg width="22" height="22" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M3 9 9 3M9 3H4.2M9 3v4.8" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </nav>
+    )}
+  </div>
+</article>
+
+<script>
+  document.querySelectorAll('[data-cs-map]').forEach((map) => {
+    const tabs = Array.from(map.querySelectorAll('[data-map-tab]'));
+    const panels = Array.from(map.querySelectorAll('[data-map-panel]'));
+
+    const activate = (key, moveFocus = false) => {
+      tabs.forEach((tab) => {
+        const on = tab.dataset.mapTab === key;
+        tab.setAttribute('aria-selected', on ? 'true' : 'false');
+        tab.tabIndex = on ? 0 : -1;
+        const state = tab.querySelector('[data-map-state]');
+        if (state) state.textContent = on ? 'Viewing' : 'View map';
+        if (on && moveFocus) tab.focus();
+      });
+      panels.forEach((panel) => {
+        panel.hidden = panel.dataset.mapPanel !== key;
+      });
+    };
+
+    tabs.forEach((tab, i) => {
+      tab.addEventListener('click', () => activate(tab.dataset.mapTab));
+      tab.addEventListener('keydown', (event) => {
+        const keys = ['ArrowRight', 'ArrowLeft', 'Home', 'End'];
+        if (!keys.includes(event.key)) return;
+        event.preventDefault();
+        let next = i;
+        if (event.key === 'ArrowRight') next = (i + 1) % tabs.length;
+        if (event.key === 'ArrowLeft') next = (i - 1 + tabs.length) % tabs.length;
+        if (event.key === 'Home') next = 0;
+        if (event.key === 'End') next = tabs.length - 1;
+        activate(tabs[next].dataset.mapTab, true);
+      });
+    });
+  });
+</script>

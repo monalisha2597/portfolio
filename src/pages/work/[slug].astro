@@ -1,111 +1,128 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { projects, site } from '../../data/site';
+import DeepCaseStudy from '../../components/DeepCaseStudy.astro';
+import { visibleProjects } from '../../data/site';
 
 export function getStaticPaths() {
-  return projects.map((p) => ({ params: { slug: p.slug }, props: { project: p } }));
+  return visibleProjects.map((p) => ({ params: { slug: p.slug }, props: { project: p } }));
 }
 
 const { project } = Astro.props;
-const currentIndex = projects.findIndex((p) => p.slug === project.slug);
-const next = projects.find((p) => p.slug === project.next) ?? projects[(currentIndex + 1) % projects.length];
+const currentIndex = visibleProjects.findIndex((p) => p.slug === project.slug);
+const requested = visibleProjects.find((p) => p.slug === project.next);
+const next =
+  requested ??
+  (visibleProjects.length > 1
+    ? visibleProjects[(currentIndex + 1) % visibleProjects.length]
+    : null);
 ---
 
-<Base title={`${project.title}, Monalisha Chatterjee`} description={project.subtitle}>
-  <article class="cs">
-    <header class="cs-hero">
+<Base
+  title={`${project.title}, Monalisha Chatterjee`}
+  description={project.subtitle}
+  ogType="article"
+  ogImage={project.cover}
+>
+  {project.study ? (
+    <DeepCaseStudy project={project} next={next} />
+  ) : (
+    <article class="cs" id="top">
+      <header class="cs-hero">
+        <div class="wrap">
+          <a class="back" href="/#work">
+            <svg width="13" height="13" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M10 6H2M5.5 2.5 2 6l3.5 3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            All work
+          </a>
+
+          <p class="eyebrow" style="margin-bottom:1.2rem;">{project.client} · {project.year}</p>
+          <h1 class="cs-title">{project.title}</h1>
+          <p class="cs-lede">{project.subtitle}</p>
+
+          <dl class="cs-meta">
+            <div>
+              <dt>Client</dt>
+              <dd>{project.client}</dd>
+            </div>
+            <div>
+              <dt>Year</dt>
+              <dd>{project.year}</dd>
+            </div>
+            <div>
+              <dt>Role</dt>
+              <dd>{project.role}</dd>
+            </div>
+            <div>
+              <dt>Platform</dt>
+              <dd>{project.platform}</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="wrap">
+          <figure class="cs-cover">
+            <img src={project.cover} width="808" height="632" alt={project.coverAlt} fetchpriority="high" />
+          </figure>
+        </div>
+      </header>
+
       <div class="wrap">
-        <a class="back" href="/#work">
-          <svg width="13" height="13" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-            <path d="M10 6H2M5.5 2.5 2 6l3.5 3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          All work
-        </a>
+        <section class="cs-body">
+          <h2><span>01</span>The brief</h2>
+          <div class="cs-prose">
+            {project.brief.map((para) => <p>{para}</p>)}
+          </div>
+        </section>
 
-        <p class="eyebrow" style="margin-bottom:1.2rem;">{project.client} · {project.year}</p>
-        <h1 class="cs-title">{project.title}</h1>
-        <p class="cs-lede">{project.subtitle}</p>
+        <section class="cs-body">
+          <h2><span>02</span>What I did</h2>
+          <div class="cs-prose">
+            <ul class="cs-list">
+              {project.did.map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+        </section>
 
-        <dl class="cs-meta">
-          <div>
-            <dt>Client</dt>
-            <dd>{project.client}</dd>
+        <section class="cs-body">
+          <h2><span>03</span>The outcome</h2>
+          <div class="cs-prose">
+            <div class="cs-outcome">
+              <p>{project.outcome}</p>
+            </div>
+            {project.note && <p class="cs-note">{project.note}</p>}
           </div>
+        </section>
+
+        <div class="cs-cta">
           <div>
-            <dt>Year</dt>
-            <dd>{project.year}</dd>
+            <p class="cs-cta__title">Want the visual detail?</p>
+            <p style="margin-top:0.6rem;">
+              The full process, screens, flows and explorations live on Behance.
+            </p>
           </div>
-          <div>
-            <dt>Role</dt>
-            <dd>{project.role}</dd>
-          </div>
-          <div>
-            <dt>Platform</dt>
-            <dd>{project.platform}</dd>
-          </div>
-        </dl>
+          <a class="btn btn--solid" href={project.behance} target="_blank" rel="noopener">
+            View the full case study
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M3 9 9 3M9 3H4.2M9 3v4.8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        {next && (
+          <nav class="next-project" aria-label="Next project">
+            <a href={`/work/${next.slug}`}>
+              <div>
+                <small>Next project</small>
+                <strong>{next.title}</strong>
+              </div>
+              <svg width="22" height="22" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                <path d="M3 9 9 3M9 3H4.2M9 3v4.8" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </nav>
+        )}
       </div>
-
-      <div class="wrap">
-        <figure class="cs-cover">
-          <img src={project.cover} width="808" height="632" alt={project.coverAlt} fetchpriority="high" />
-        </figure>
-      </div>
-    </header>
-
-    <div class="wrap">
-      <section class="cs-body">
-        <h2><span>01</span>The brief</h2>
-        <div class="cs-prose">
-          {project.brief.map((para) => <p>{para}</p>)}
-        </div>
-      </section>
-
-      <section class="cs-body">
-        <h2><span>02</span>What I did</h2>
-        <div class="cs-prose">
-          <ul class="cs-list">
-            {project.did.map((item) => <li>{item}</li>)}
-          </ul>
-        </div>
-      </section>
-
-      <section class="cs-body">
-        <h2><span>03</span>The outcome</h2>
-        <div class="cs-prose">
-          <div class="cs-outcome">
-            <p>{project.outcome}</p>
-          </div>
-          {project.note && <p class="cs-note">{project.note}</p>}
-        </div>
-      </section>
-
-      <div class="cs-cta">
-        <div>
-          <p class="cs-cta__title">Want the visual detail?</p>
-          <p style="margin-top:0.6rem;">
-            The full process, screens, flows and explorations live on Behance.
-          </p>
-        </div>
-        <a class="btn btn--solid" href={project.behance} target="_blank" rel="noopener">
-          View the full case study
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-            <path d="M3 9 9 3M9 3H4.2M9 3v4.8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-      </div>
-
-      <nav class="next-project" aria-label="Next project">
-        <a href={`/work/${next.slug}`}>
-          <div>
-            <small>Next project</small>
-            <strong>{next.title}</strong>
-          </div>
-          <svg width="22" height="22" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-            <path d="M3 9 9 3M9 3H4.2M9 3v4.8" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-      </nav>
-    </div>
-  </article>
+    </article>
+  )}
 </Base>

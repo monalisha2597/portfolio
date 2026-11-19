@@ -6,12 +6,14 @@ interface Props {
   title?: string;
   description?: string;
   ogType?: string;
+  ogImage?: string;
 }
 
 const {
   title = site.title,
   description = site.description,
   ogType = 'website',
+  ogImage = '/img/monalisha.jpg',
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
@@ -32,7 +34,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={new URL('/img/monalisha.jpg', Astro.site).href} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site).href} />
     <meta name="twitter:card" content="summary_large_image" />
 
     <link rel="preload" href="/fonts/archivo-black.woff2" as="font" type="font/woff2" crossorigin />
@@ -46,7 +48,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
       <div class="wrap nav__inner">
         <a class="brand" href="/" aria-label="Monalisha Chatterjee, home">
           <span class="brand__mark" aria-hidden="true">MC</span>
-          <span class="brand__text">Monalisha<i>Product designer, Bengaluru</i></span>
+          <span class="brand__text">Monalisha<i>Product designer, India</i></span>
         </a>
 
         <nav class="nav__links" aria-label="Primary">
@@ -54,6 +56,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
           <a href="/#journey">Journey</a>
           <a href="/#process">Process</a>
           <a href="/#about">About</a>
+          <a href={site.resume} target="_blank" rel="noopener">Resume</a>
         </nav>
 
         <a class="nav__cta" href="/#contact">

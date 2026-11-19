@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { site, projects, chapters, steps, testimonials, certifications, skills, practice } from '../data/site';
+import { site, visibleProjects, chapters, steps, testimonials, certifications, skills } from '../data/site';
 ---
 
 <Base>
@@ -32,7 +32,7 @@ import { site, projects, chapters, steps, testimonials, certifications, skills, 
     <div class="wrap hero__inner">
       <div class="hero__grid">
         <div class="hero__copy">
-          <p class="eyebrow hero__eyebrow">Product designer · Bengaluru, India</p>
+          <p class="eyebrow hero__eyebrow">Product designer · India</p>
 
           <h1 class="hero__title">
             <span class="line"><span>Give me the</span></span>
@@ -40,9 +40,9 @@ import { site, projects, chapters, steps, testimonials, certifications, skills, 
           </h1>
 
           <p class="hero__lede">
-            I'm Monalisha, a product designer in Bengaluru. I'd rather own the whole product than a
+            I'm Monalisha, a product designer based in India. I'd rather own the whole product than a
             slice of it, research, flows, screens, prototypes, and the QA pass that keeps it all
-            honest. Four years in, mostly as the only designer in the room.
+            honest. Five years in, mostly as the only designer in the room.
           </p>
 
           <div class="hero__actions">
@@ -57,26 +57,25 @@ import { site, projects, chapters, steps, testimonials, certifications, skills, 
         </div>
 
         <figure class="portrait">
-          <span class="portrait__sticker">Open to work</span>
           <div class="portrait__frame">
             <img
               src="/img/monalisha.jpg"
               width="960"
               height="1200"
-              alt="Monalisha Chatterjee, product designer, photographed outdoors in Bengaluru"
+              alt="Monalisha Chatterjee, product designer, photographed outdoors"
               fetchpriority="high"
             />
           </div>
           <figcaption class="portrait__caption">
             <span>Monalisha Chatterjee</span>
-            <span>Bengaluru · IN</span>
+            <span>India</span>
           </figcaption>
         </figure>
       </div>
 
       <ul class="hero__meta">
         <li><span class="available">Available for work</span></li>
-        <li>4+ years in product design</li>
+        <li>5+ years in product design</li>
         <li>Now at Perx Technologies</li>
         <li>Prev. Jabu (YC S21)</li>
       </ul>
@@ -87,19 +86,24 @@ import { site, projects, chapters, steps, testimonials, certifications, skills, 
   <section class="section" id="work">
     <div class="wrap">
       <header class="sec-head" data-reveal>
-        <h2 class="sec-head__title">Selected work <sup>04</sup></h2>
-        <p class="sec-head__note">Loyalty, CRM, commerce and fintech, shipped product work, not concepts.</p>
+        <h2 class="sec-head__title">Selected work <sup>{String(visibleProjects.length).padStart(2, '0')}</sup></h2>
+        <p class="sec-head__note">
+          {visibleProjects.length === 1
+            ? 'One deep case study.'
+            : 'Three shipped products and one self-initiated concept.'}
+        </p>
       </header>
 
-      <div class="work__list">
-        {projects.map((p) => (
+      <div class={`work__list${visibleProjects.length === 1 ? ' work__list--single' : ''}`}>
+        {visibleProjects.map((p, i) => (
           <article class="work-item">
             <a class="work-item__media" href={`/work/${p.slug}`} aria-label={`Read the ${p.title} case study`}>
               <img src={p.cover} width="808" height="632" alt={p.coverAlt} loading="lazy" />
             </a>
 
             <div class="work-item__body" data-reveal>
-              <p class="work-item__index"><span>{p.index}</span> {p.domain}</p>
+              <p class="work-item__index"><span>{String(i + 1).padStart(2, '0')}</span> {p.domain}</p>
+              {p.study && <p class="work-item__flag">Full case study</p>}
               <h3 class="work-item__title">
                 <a href={`/work/${p.slug}`}>{p.title}</a>
               </h3>
@@ -122,20 +126,6 @@ import { site, projects, chapters, steps, testimonials, certifications, skills, 
         ))}
       </div>
 
-      <div class="practice" data-reveal>
-        <div class="practice__label">
-          Practice &amp; experiments
-          <em>The work before the work, kept public on purpose.</em>
-        </div>
-        <div class="practice__list">
-          {practice.map((item) => (
-            <a href={site.behance} target="_blank" rel="noopener">
-              {item.name}
-              <span>{item.meta} ↗</span>
-            </a>
-          ))}
-        </div>
-      </div>
     </div>
   </section>
 
@@ -144,7 +134,7 @@ import { site, projects, chapters, steps, testimonials, certifications, skills, 
     <div class="wrap">
       <header class="sec-head" data-reveal>
         <h2 class="sec-head__title">The journey <sup>05</sup></h2>
-        <p class="sec-head__note">Four years in product design, mostly as the only designer in the room.</p>
+        <p class="sec-head__note">Five years across loyalty, fintech, B2B SaaS and commerce.</p>
       </header>
 
       <div class="chapters">
@@ -261,18 +251,19 @@ import { site, projects, chapters, steps, testimonials, certifications, skills, 
             screens, the prototype, and the awkward QA pass three days before release.
           </p>
           <p class="small">
-            I'm Monalisha, a self-taught product designer currently residing in Bengaluru. I try to
-            understand the business before I touch the interface, and I care more about whether
-            something works than whether it photographs well.
+            I'm Monalisha, a self-taught product designer currently based in India. I try to
+            understand the business and where users get stuck before I touch the interface, then
+            design and test until it's usable. I care more about whether something works than
+            whether it photographs well.
           </p>
           <p class="small">
-            Outside work I'm usually travelling, taking photos, cooking, or with my people and my
+            Outside work I'm usually traveling, taking photos, cooking, or with my people and my
             pets.
           </p>
         </div>
 
         <div>
-          <h3 class="list-head">Certifications &amp; programmes</h3>
+          <h3 class="list-head">Certifications &amp; programs</h3>
           <ul class="spec-list">
             {certifications.map((c) => (
               <li>{c.name}<span>{c.meta}</span></li>
@@ -320,8 +311,14 @@ import { site, projects, chapters, steps, testimonials, certifications, skills, 
               <path d="M3 9 9 3M9 3H4.2M9 3v4.8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </a>
+          <a href={site.resume} target="_blank" rel="noopener">
+            Resume
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M3 9 9 3M9 3H4.2M9 3v4.8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
           <p>
-            Based in Bengaluru, working remotely with teams in Singapore and Africa. Open to product
+            Based in India, working remotely with teams in Singapore and Namibia. Open to product
             design roles and select freelance projects.
           </p>
         </div>

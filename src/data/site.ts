@@ -1,14 +1,17 @@
+import { merchantWalletStudy } from './case-studies/merchant-wallet';
+
 export const site = {
   name: 'Monalisha Chatterjee',
   shortName: 'Monalisha',
   role: 'Product Designer',
-  location: 'Bengaluru, India',
+  location: 'India',
+  resume: '/monalisha-chatterjee-resume.pdf',
   email: 'mona.chatterjee25@gmail.com',
   linkedin: 'https://www.linkedin.com/in/monalishachatterjee/',
   behance: 'https://www.behance.net/monalishachatterjee',
-  title: 'Monalisha Chatterjee, Product Designer, Bengaluru',
+  title: 'Monalisha Chatterjee, Product Designer',
   description:
-    'Product designer with 4+ years across loyalty, CRM, commerce and fintech. Sole designer at Perx Technologies; previously Jabu (YC S21).',
+    'Product designer with 5+ years across loyalty, CRM, commerce and fintech. Currently at Perx Technologies; previously Jabu (YC S21).',
 };
 
 export const projects = [
@@ -30,7 +33,7 @@ export const projects = [
       'Cover of the Designing for Engagement case study, showing the Claw Machine and Bubble Pop game interfaces.',
     behance: 'https://www.behance.net/gallery/255795573/Designing-for-Engagement',
     brief: [
-      `Loyalty platforms live or die on return visits. Perx runs customer engagement and loyalty programmes for brands across Asia, and the team wanted to test a fairly simple hypothesis: could a game bring people back more often than another points email?`,
+      `Loyalty platforms live or die on return visits. Perx runs customer engagement and loyalty programs for brands across Asia, and the team wanted to test a fairly simple hypothesis: could a game bring people back more often than another points email?`,
       `I worked with the PMs on the first designed versions of two games, Claw Machine and Bubble Pop, starting from product requirements and early research, and turning them into mechanics, screens and reward moments that could sit naturally inside an existing product.`,
     ],
     did: [
@@ -39,26 +42,28 @@ export const projects = [
       'Kept both games inside Perx’s existing visual system so they read as part of the platform, not a bolt-on.',
       'Worked with engineering through handoff and build review.',
     ],
-    outcome: `The first designed versions of both games were delivered into the product. They sit alongside the wider redesign of Perx’s core white-label microsite platform, the base product clients use to run their own engagement and loyalty programmes.`,
+    outcome: `The first designed versions of both games were delivered into the product. They sit alongside the wider redesign of Perx’s core white-label microsite platform, the base product clients use to run their own engagement and loyalty programs.`,
     note: 'Client work is under NDA. The screens here are the versions shared publicly in my Behance case study.',
     next: 'merchant-wallet',
+    study: null,
+    hidden: true,
   },
   {
     slug: 'merchant-wallet',
     index: '02',
-    title: 'Revolutionizing the merchant’s financial behaviour',
+    title: 'Revolutionizing the merchant’s financial behavior',
     subtitle:
       'A wallet for merchants whose relationship with money is cash-first, where trust is earned in the first thirty seconds.',
     card:
-      'Leading the end-to-end design of a new fintech wallet, from user research and flows to the prototype that defined the MVP.',
+      'Leading the end-to-end design of a new fintech wallet, from ambassador research and flows to the MVP that shipped across merchant, agent and admin surfaces.',
     client: 'JABU (YC S21)',
-    year: '2023',
+    year: '2022/23',
     role: 'Product Designer II',
     domain: 'Fintech',
-    platform: 'Mobile web',
-    cover: '/img/merchant.png',
+    platform: 'Mobile web + desktop admin',
+    cover: '/img/work/merchant-wallet/cover.jpg',
     coverAlt:
-      'Cover of the merchant wallet case study, showing research artefacts and the wallet interface.',
+      'Three JWallet screens fanned across a lime panel: the wallet home with balance and quick actions, a payment receipt, and the savings list.',
     behance: 'https://www.behance.net/gallery/193015809/Revolutionizing-merchants-financial-behaviour',
     brief: [
       `Jabu builds financial tools for merchants in markets where cash is still the default. The brief was a wallet, but the actual problem was trust: convincing someone whose money has always been physical to hand a balance to a screen.`,
@@ -73,6 +78,8 @@ export const projects = [
     outcome: `The wallet moved from research to a defined, prototyped product experience, with flows and decisions documented for the team to build against. The way we ran research and handoff here became the pattern for later Jabu products.`,
     note: '',
     next: 'agent-dashboard',
+    study: merchantWalletStudy,
+    hidden: false,
   },
   {
     slug: 'agent-dashboard',
@@ -104,6 +111,8 @@ export const projects = [
     outcome: `The CRM shipped as a working web application for agents, and the components built for it fed straight into Jabu’s design system. Running design QA alongside development became part of how the team shipped.`,
     note: '',
     next: 'nursery-commerce',
+    study: null,
+    hidden: true,
   },
   {
     slug: 'nursery-commerce',
@@ -128,15 +137,24 @@ export const projects = [
     ],
     did: [
       'Researched how first-time parents describe what they need, and where existing stores lose them.',
-      'Restructured the catalogue around occasions and stages rather than categories alone.',
+      'Restructured the catalog around occasions and stages rather than categories alone.',
       'Designed the end-to-end flows and a complete mobile interface.',
       'Published it as a case study on Behance.',
     ],
     outcome: `Published as a self-initiated case study on Behance. It is the project I use to test ideas about commerce, trust and first-time users without a client brief attached to them.`,
     note: 'Self-initiated concept project, not client work.',
     next: 'designing-for-engagement',
+    study: null,
+    hidden: true,
   },
 ];
+
+/**
+ * Projects shown on the public site. Hidden studies stay in `projects`
+ * with all their content, so they can be brought back by removing the
+ * `hidden` flag.
+ */
+export const visibleProjects = projects.filter((p: any) => !p.hidden);
 
 export const chapters = [
   {
@@ -144,8 +162,8 @@ export const chapters = [
     org: 'Perx Technologies',
     link: '',
     role: 'User Experience Designer',
-    text: `The sole designer on a B2B loyalty platform, working end to end with PMs and developers. I look after the customer-facing microsite experience and the dashboard business teams run their programmes from, plus a pair of engagement games and a FlutterFlow component library that lets client apps ship faster.`,
-    tags: ['Sole designer', 'Loyalty platform', 'FlutterFlow'],
+    text: `Working end to end on a B2B loyalty platform with PMs and developers. I look after the customer-facing microsite experience and the dashboard business teams run their programs from, plus a pair of engagement games and a FlutterFlow component library that lets client apps ship faster. Lately, most of that time goes to a no-code microsite builder that lets business users assemble, preview and publish branded pages from a template, a blank canvas, or components.`,
+    tags: ['No-code builder', 'Loyalty platform', 'FlutterFlow'],
     promo: false,
   },
   {
@@ -171,8 +189,8 @@ export const chapters = [
     org: 'Mentorskool',
     link: '',
     role: 'Design intern, then Product Designer',
-    text: `Started on logos, brochures and a marketing website, then moved into product within months. Before long I was the only designer on a multi-sided B2B learning platform, creator, client and learner experiences running on one system.`,
-    tags: ['B2B SaaS', 'Sole designer', 'Brand'],
+    text: `Started on logos, brochures and a marketing website, then moved into product within months. Before long I was designing a multi-sided B2B learning platform end to end, creator, client and learner experiences running on one system.`,
+    tags: ['B2B SaaS', 'Platform design', 'Brand'],
     promo: false,
   },
   {
@@ -211,7 +229,7 @@ export const steps = [
 
 export const testimonials = {
   lead: {
-    quote: `Somehow, she manages to juggle multiple tasks without breaking a sweat. When it comes to speed, Monalisha is fast and precise, never missing a beat. If you are after a designer with the perfect mix of organisation, speed, heart and team spirit, she is your go-to.`,
+    quote: `Somehow, she manages to juggle multiple tasks without breaking a sweat. When it comes to speed, Monalisha is fast and precise, never missing a beat. If you are after a designer with the perfect mix of organization, speed, heart and team spirit, she is your go-to.`,
     name: 'Marie Sahakian',
     title: 'DesOps, Senior Product Designer',
     relation: 'Managed Monalisha directly',
@@ -255,10 +273,7 @@ export const testimonials = {
 };
 
 export const certifications = [
-  { name: 'Conduct UX Research and Test Early Concepts', meta: 'Coursera, 2021' },
-  { name: 'Build Wireframes and Low-Fidelity Prototypes', meta: 'Coursera, 2021' },
-  { name: 'Start the UX Design Process: Empathize, Define, and Ideate', meta: 'Coursera, 2021' },
-  { name: 'Foundations of User Experience (UX) Design', meta: 'Coursera, 2021' },
+  { name: 'UX design foundations', meta: 'Coursera, 2021 · 4 courses' },
 ];
 
 export const skills = [
