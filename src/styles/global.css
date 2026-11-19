@@ -2369,6 +2369,20 @@ ol {
   color: var(--muted);
 }
 
+/* Every plate uses the five-up screen width, whatever the count, so two
+   screens do not balloon to twice the size of five. Short rows centre. */
+.cs-plate .screens {
+  --screen-gap: clamp(0.85rem, 1.7vw, 1.35rem);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--screen-gap);
+}
+.cs-plate .screens .screen {
+  flex: 1 1 calc((100% - 4 * var(--screen-gap)) / 5);
+  max-width: calc((100% - 4 * var(--screen-gap)) / 5);
+}
+
 /* Build and QA */
 .cs-qa {
   display: grid;
@@ -2423,6 +2437,10 @@ ol {
   .screens--5 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+  .cs-plate .screens .screen {
+    flex-basis: calc((100% - 2 * var(--screen-gap)) / 3);
+    max-width: calc((100% - 2 * var(--screen-gap)) / 3);
+  }
   .cs-stages {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -2475,6 +2493,10 @@ ol {
   .screens--4,
   .screens--5 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .cs-plate .screens .screen {
+    flex-basis: calc((100% - var(--screen-gap)) / 2);
+    max-width: calc((100% - var(--screen-gap)) / 2);
   }
   .cs-showcase__copy {
     max-width: 52ch;
